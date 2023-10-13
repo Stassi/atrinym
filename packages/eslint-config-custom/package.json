@@ -4,6 +4,7 @@
   "main": "index.cjs",
   "license": "MIT",
   "scripts": {
+    "format": "pnpm run lint --fix",
     "lint": "eslint . --ext cjs,js,json,mjs,ts,tsx"
   },
   "dependencies": {
