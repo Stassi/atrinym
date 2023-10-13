@@ -5,8 +5,7 @@ const rollupConfig: RollupOptions = {
   external: ['react/jsx-runtime'],
   input: 'index.tsx',
   output: {
-    file: 'dist/index.js',
-    format: 'cjs',
+    file: 'dist/index.mjs',
   },
   plugins: [typescript()],
 }
