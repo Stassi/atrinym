@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "build": "next build",
-    "dev": "next dev",
+    "dev": "next",
     "format": "pnpm run lint --fix",
     "lint": "next lint . --ext cjs,js,json,mjs,ts,tsx",
     "start": "next start"
