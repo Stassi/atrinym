@@ -11,12 +11,10 @@
       "dom.iterable",
       "esnext"
     ],
-    "module": "esnext",
     "noEmit": true,
     "resolveJsonModule": true,
     "strict": false,
-    "strictNullChecks": true,
-    "target": "es5"
+    "strictNullChecks": true
   },
   "display": "Next.js",
   "extends": "./base.json"

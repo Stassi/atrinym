@@ -5,9 +5,7 @@
     "jsx": "react-jsx",
     "lib": [
       "ES2023"
-    ],
-    "module": "ES2022",
-    "target": "ES2022"
+    ]
   },
   "display": "React Library",
   "extends": "./base.json"
