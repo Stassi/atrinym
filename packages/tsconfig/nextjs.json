@@ -9,7 +9,7 @@
     "lib": [
       "dom",
       "dom.iterable",
-      "esnext"
+      "ES2023"
     ],
     "noEmit": true,
     "resolveJsonModule": true,
