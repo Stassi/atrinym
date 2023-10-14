@@ -1,7 +1,6 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
   "compilerOptions": {
-    "declaration": true,
     "jsx": "react-jsx",
     "lib": [
       "ES2023"
