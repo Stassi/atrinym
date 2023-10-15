@@ -6,7 +6,7 @@
     "packages/*"
   ],
   "scripts": {
-    "build": "turbo run build",
+    "build:all": "turbo run build",
     "integrity:repair": "pnpm run integrity:validate --fix",
     "integrity:repair:all": "turbo run integrity:repair",
     "integrity:validate": "eslint . --ext cjs,js,json,mjs,ts,tsx --ignore-pattern apps/* --ignore-pattern packages/*",
