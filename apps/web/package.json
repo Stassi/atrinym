@@ -4,10 +4,10 @@
   "private": true,
   "scripts": {
     "build": "next build",
-    "dev": "next",
     "integrity:repair": "pnpm run integrity:validate --fix",
     "integrity:validate": "next lint . --ext cjs,js,json,mjs,ts,tsx",
-    "start": "next start"
+    "start:dev": "next -p 3000",
+    "start:prod": "next start -p 3000"
   },
   "dependencies": {
     "next": "^13.5.4",

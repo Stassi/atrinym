@@ -7,12 +7,12 @@
   ],
   "scripts": {
     "build": "turbo run build",
-    "dev": "turbo run dev",
     "integrity:repair": "pnpm run integrity:validate --fix",
     "integrity:repair:all": "turbo run integrity:repair",
     "integrity:validate": "eslint . --ext cjs,js,json,mjs,ts,tsx --ignore-pattern apps/* --ignore-pattern packages/*",
     "integrity:validate:all": "turbo run integrity:validate",
-    "start": "turbo run start",
+    "start:dev:all": "turbo run start:dev",
+    "start:prod:all": "turbo run start:prod",
     "turbo:daemon:reload": "turbo daemon clean"
   },
   "devDependencies": {

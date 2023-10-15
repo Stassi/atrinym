@@ -14,10 +14,6 @@
         "^build"
       ]
     },
-    "dev": {
-      "cache": false,
-      "persistent": true
-    },
     "//#integrity:repair": {
       "cache": false
     },
@@ -30,7 +26,11 @@
     "integrity:validate": {
       "outputs": []
     },
-    "start": {
+    "start:dev": {
+      "cache": false,
+      "persistent": true
+    },
+    "start:prod": {
       "cache": false,
       "dependsOn": [
         "build"

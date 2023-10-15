@@ -6,9 +6,9 @@
   "license": "MIT",
   "scripts": {
     "build": "rollup -c rollup.config.ts --configPlugin typescript",
-    "dev": "pnpm run build --watch",
     "integrity:repair": "pnpm run integrity:validate --fix",
-    "integrity:validate": "eslint . --ext cjs,js,json,mjs,ts,tsx"
+    "integrity:validate": "eslint . --ext cjs,js,json,mjs,ts,tsx",
+    "start:dev": "pnpm run build --watch"
   },
   "dependencies": {
     "@rollup/plugin-typescript": "^11.1.5",
