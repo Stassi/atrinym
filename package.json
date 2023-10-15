@@ -8,8 +8,10 @@
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev",
-    "format": "turbo run format",
-    "lint": "turbo run lint",
+    "integrity:repair": "pnpm run lint --fix",
+    "integrity:repair:all": "turbo run integrity:repair",
+    "integrity:validate": "eslint . --ext cjs,js,json,mjs,ts,tsx --ignore-pattern apps/* --ignore-pattern packages/*",
+    "integrity:validate:all": "turbo run integrity:validate",
     "pid:reload": "turbo daemon clean",
     "start": "turbo run start"
   },

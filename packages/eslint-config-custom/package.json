@@ -4,8 +4,8 @@
   "main": "index.cjs",
   "license": "MIT",
   "scripts": {
-    "format": "pnpm run lint --fix",
-    "lint": "eslint . --ext cjs,js,json,mjs,ts,tsx"
+    "integrity:repair": "pnpm run lint --fix",
+    "integrity:validate": "eslint . --ext cjs,js,json,mjs,ts,tsx"
   },
   "dependencies": {
     "@typescript-eslint/eslint-plugin": "^6.7.5",

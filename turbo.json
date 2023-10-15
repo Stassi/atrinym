@@ -18,10 +18,16 @@
       "cache": false,
       "persistent": true
     },
-    "format": {
+    "//#integrity:repair": {
       "cache": false
     },
-    "lint": {
+    "integrity:repair": {
+      "cache": false
+    },
+    "//#integrity:validate": {
+      "outputs": []
+    },
+    "integrity:validate": {
       "outputs": []
     },
     "start": {

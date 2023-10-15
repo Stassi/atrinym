@@ -5,8 +5,8 @@
   "scripts": {
     "build": "next build",
     "dev": "next",
-    "format": "pnpm run lint --fix",
-    "lint": "next lint . --ext cjs,js,json,mjs,ts,tsx",
+    "integrity:repair": "pnpm run lint --fix",
+    "integrity:validate": "next lint . --ext cjs,js,json,mjs,ts,tsx",
     "start": "next start"
   },
   "dependencies": {

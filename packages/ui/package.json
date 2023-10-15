@@ -7,8 +7,8 @@
   "scripts": {
     "build": "rollup -c rollup.config.ts --configPlugin typescript",
     "dev": "pnpm run build --watch",
-    "format": "pnpm run lint --fix",
-    "lint": "eslint . --ext cjs,js,json,mjs,ts,tsx"
+    "integrity:repair": "pnpm run lint --fix",
+    "integrity:validate": "eslint . --ext cjs,js,json,mjs,ts,tsx"
   },
   "dependencies": {
     "@rollup/plugin-typescript": "^11.1.5",
