@@ -8,7 +8,7 @@
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev",
-    "integrity:repair": "pnpm run lint --fix",
+    "integrity:repair": "pnpm run integrity:validate --fix",
     "integrity:repair:all": "turbo run integrity:repair",
     "integrity:validate": "eslint . --ext cjs,js,json,mjs,ts,tsx --ignore-pattern apps/* --ignore-pattern packages/*",
     "integrity:validate:all": "turbo run integrity:validate",

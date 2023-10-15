@@ -4,7 +4,7 @@
   "main": "index.cjs",
   "license": "MIT",
   "scripts": {
-    "integrity:repair": "pnpm run lint --fix",
+    "integrity:repair": "pnpm run integrity:validate --fix",
     "integrity:validate": "eslint . --ext cjs,js,json,mjs,ts,tsx"
   },
   "dependencies": {
