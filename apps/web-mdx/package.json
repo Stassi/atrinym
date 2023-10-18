@@ -1,0 +1,30 @@
+{
+  "name": "web-mdx",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "build": "next build",
+    "integrity:repair": "pnpm run integrity:validate --fix",
+    "integrity:validate": "next lint . --ext cjs,js,json,mjs,ts,tsx",
+    "start:dev": "next -p 5000",
+    "start:prod": "next start -p 5000"
+  },
+  "dependencies": {
+    "next": "^13.5.5",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "ui": "workspace:*",
+    "ui-mdx": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^20.8.7",
+    "@types/react": "^18.2.29",
+    "@types/react-dom": "^18.2.14",
+    "eslint-config-custom": "workspace:*",
+    "tsconfig": "workspace:*"
+  },
+  "eslintConfig": {
+    "extends": "custom",
+    "root": true
+  }
+}
