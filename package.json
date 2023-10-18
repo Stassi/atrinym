@@ -22,7 +22,7 @@
     "turbo": "^1.10.16-canary.1",
     "typescript": "^5.2.2"
   },
-  "packageManager": "pnpm@8.9.1",
+  "packageManager": "pnpm@8.9.2",
   "eslintConfig": {
     "extends": "custom",
     "root": true,
