@@ -2,6 +2,7 @@
   "name": "eslint-config-custom",
   "version": "0.0.0",
   "main": "index.cjs",
+  "type": "module",
   "license": "MIT",
   "scripts": {
     "integrity:repair": "pnpm run integrity:validate --fix",
