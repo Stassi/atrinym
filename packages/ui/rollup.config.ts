@@ -7,7 +7,7 @@ const rollupConfig: RollupOptions = {
   output: {
     file: 'dist/index.mjs',
   },
-  plugins: [typescript()],
+  plugins: [typescript({ exclude: 'rollup.config.ts' })],
 }
 
 // eslint-disable-next-line import/no-default-export -- default export required by rollup.js
