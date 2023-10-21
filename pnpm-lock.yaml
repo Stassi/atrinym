@@ -81,6 +81,9 @@ importers:
       ui:
         specifier: workspace:*
         version: link:../../packages/ui
+      ui-mdx:
+        specifier: workspace:*
+        version: link:../../packages/ui-mdx
     devDependencies:
       '@types/node':
         specifier: ^20.8.5
