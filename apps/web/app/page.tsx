@@ -1,5 +1,13 @@
 import React, { type JSX } from 'react'
 import { Button, Header } from 'ui'
+import {
+  CurrentYear,
+  HelloWorld,
+  HelloWorldNonary,
+  Thing,
+  Welcome,
+  message,
+} from 'ui-mdx'
 
 /*
   eslint-disable-next-line import/no-default-export --
@@ -11,6 +19,17 @@ export default function Page(): JSX.Element {
     <>
       <Header text="Web" />
       <Button text="Boop" />
+      <hr />
+      <CurrentYear name="Claudius" year={54} />
+      <hr />
+      <HelloWorld />
+      <HelloWorldNonary />
+      <hr />
+      <Thing />
+      <hr />
+      {message}
+      <hr />
+      <Welcome />
     </>
   )
 }
