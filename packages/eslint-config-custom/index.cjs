@@ -49,6 +49,7 @@ const eslintConfig = {
   plugins: ['@typescript-eslint', 'import', 'prettier'],
   rules: {
     '@next/next/no-html-link-for-pages': 'off',
+    '@typescript-eslint/consistent-type-definitions': ['error', 'type'],
     'arrow-body-style': 'off',
     'import/consistent-type-specifier-style': ['error', 'prefer-inline'],
     'prefer-arrow-callback': 'off',
