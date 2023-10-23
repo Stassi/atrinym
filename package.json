@@ -13,6 +13,7 @@
     "integrity:validate:all": "turbo run integrity:validate",
     "start:dev:all": "turbo run start:dev",
     "start:prod:all": "turbo run start:prod",
+    "test:all": "turbo run test",
     "turbo:daemon:reload": "turbo daemon clean"
   },
   "devDependencies": {
