@@ -582,8 +582,8 @@ packages:
       eslint: 8.52.0
       eslint-visitor-keys: 3.4.3
 
-  /@eslint-community/regexpp@4.9.1:
-    resolution: {integrity: sha512-Y27x+MBLjXa+0JWDhykM3+JE+il3kHKAEqabfEWq3SDhZjLYb6/BHL/JKFnH3fe207JaXkyDo685Oc2Glt6ifA==}
+  /@eslint-community/regexpp@4.10.0:
+    resolution: {integrity: sha512-Cu96Sd2By9mCNTx2iyKOmq10v22jUVQv0lQnlGNy16oE9589yE+QADPbrMGCkA51cKZSg3Pu/aTJVTGfL/qjUA==}
     engines: {node: ^12.0.0 || ^14.0.0 || >=16.0.0}
 
   /@eslint/eslintrc@2.1.2:
@@ -1323,7 +1323,7 @@ packages:
   /@types/hast@3.0.2:
     resolution: {integrity: sha512-B5hZHgHsXvfCoO3xgNJvBnX7N8p86TqQeGKXcokW4XXi+qY4vxxPSFYofytvVmpFxzPv7oxDQzjg5Un5m2/xiw==}
     dependencies:
-      '@types/unist': 2.0.9
+      '@types/unist': 3.0.1
     dev: false
 
   /@types/istanbul-lib-coverage@2.0.5:
@@ -1353,7 +1353,7 @@ packages:
   /@types/mdast@4.0.2:
     resolution: {integrity: sha512-tYR83EignvhYO9iU3kDg8V28M0jqyh9zzp5GV+EO+AYnyUl3P5ltkTeJuTiFZQFz670FSb3EwT/6LQdX+UdKfw==}
     dependencies:
-      '@types/unist': 2.0.9
+      '@types/unist': 3.0.1
     dev: false
 
   /@types/mdx@2.0.9:
@@ -1428,7 +1428,7 @@ packages:
       typescript:
         optional: true
     dependencies:
-      '@eslint-community/regexpp': 4.9.1
+      '@eslint-community/regexpp': 4.10.0
       '@typescript-eslint/parser': 6.9.0(eslint@8.52.0)(typescript@5.2.2)
       '@typescript-eslint/scope-manager': 6.9.0
       '@typescript-eslint/type-utils': 6.9.0(eslint@8.52.0)(typescript@5.2.2)
@@ -1642,9 +1642,9 @@ packages:
       eslint-import-resolver-typescript: 3.6.1(@typescript-eslint/parser@6.9.0)(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.29.0)(eslint@8.52.0)
       eslint-plugin-eslint-comments: 3.2.0(eslint@8.52.0)
       eslint-plugin-import: 2.29.0(@typescript-eslint/parser@6.9.0)(eslint-import-resolver-typescript@3.6.1)(eslint@8.52.0)
-      eslint-plugin-jest: 27.4.3(@typescript-eslint/eslint-plugin@6.9.0)(eslint@8.52.0)(typescript@5.2.2)
+      eslint-plugin-jest: 27.6.0(@typescript-eslint/eslint-plugin@6.9.0)(eslint@8.52.0)(typescript@5.2.2)
       eslint-plugin-jsx-a11y: 6.7.1(eslint@8.52.0)
-      eslint-plugin-playwright: 0.16.0(eslint-plugin-jest@27.4.3)(eslint@8.52.0)
+      eslint-plugin-playwright: 0.16.0(eslint-plugin-jest@27.6.0)(eslint@8.52.0)
       eslint-plugin-react: 7.33.2(eslint@8.52.0)
       eslint-plugin-react-hooks: 4.6.0(eslint@8.52.0)
       eslint-plugin-testing-library: 6.1.0(eslint@8.52.0)(typescript@5.2.2)
@@ -1774,23 +1774,23 @@ packages:
     resolution: {integrity: sha512-NuHqBY1PB/D8xU6s/thBgOAiAP7HOYDQ32+BFZILJ8ivkUkAHQnWfn6WhL79Owj1qmUnoN/YPhktdIoucipkAQ==}
     dev: false
 
-  /acorn-import-assertions@1.9.0(acorn@8.10.0):
+  /acorn-import-assertions@1.9.0(acorn@8.11.2):
     resolution: {integrity: sha512-cmMwop9x+8KFhxvKrKfPYmN6/pKTYYHBqLa0DfvVZcKMJWNyWLnaqND7dx/qn66R7ewM1UX5XMaDVP5wlVTaVA==}
     peerDependencies:
       acorn: ^8
     dependencies:
-      acorn: 8.10.0
+      acorn: 8.11.2
     dev: false
 
-  /acorn-jsx@5.3.2(acorn@8.10.0):
+  /acorn-jsx@5.3.2(acorn@8.11.2):
     resolution: {integrity: sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ==}
     peerDependencies:
       acorn: ^6.0.0 || ^7.0.0 || ^8.0.0
     dependencies:
-      acorn: 8.10.0
+      acorn: 8.11.2
 
-  /acorn@8.10.0:
-    resolution: {integrity: sha512-F0SAmZ8iUtS//m8DmCTA0jlh6TDKkHQyK6xc6V4KDTyZKA9dnvX9/3sRTVQrWm79glUAZbnmmNcdYwUIHWVybw==}
+  /acorn@8.11.2:
+    resolution: {integrity: sha512-nc0Axzp/0FILLEVsm4fNwLCwMttvhEI263QtVPQcbpfZZ3ts0hLsZGOpE6czNlid7CJ9MlyH8reXkpsf3YUY4w==}
     engines: {node: '>=0.4.0'}
     hasBin: true
 
@@ -2077,8 +2077,8 @@ packages:
     engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
     hasBin: true
     dependencies:
-      caniuse-lite: 1.0.30001554
-      electron-to-chromium: 1.4.566
+      caniuse-lite: 1.0.30001555
+      electron-to-chromium: 1.4.569
       node-releases: 2.0.13
       update-browserslist-db: 1.0.13(browserslist@4.22.1)
 
@@ -2139,8 +2139,8 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /caniuse-lite@1.0.30001554:
-    resolution: {integrity: sha512-A2E3U//MBwbJVzebddm1YfNp7Nud5Ip+IPn4BozBmn4KqVX7AvluoIDFWjsv5OkGnKUXQVmMSoMKLa3ScCblcQ==}
+  /caniuse-lite@1.0.30001555:
+    resolution: {integrity: sha512-NzbUFKUnJ3DTcq6YyZB6+qqhfD112uR3uoEnkmfzm2wVzUNsFkU7AwBjKQ654Sp5cau0JxhFyRSn/tQZ+XfygA==}
 
   /ccount@2.0.1:
     resolution: {integrity: sha512-eyrF0jiFpY+3drT6383f1qhkbGsLSifNAjA61IUjZjmLCWjItY6LB9ft9YhoDgwfmclB2zhu51Lc7+95b8NRAg==}
@@ -2435,8 +2435,8 @@ packages:
     engines: {node: '>=12'}
     dev: false
 
-  /electron-to-chromium@1.4.566:
-    resolution: {integrity: sha512-mv+fAy27uOmTVlUULy15U3DVJ+jg+8iyKH1bpwboCRhtDC69GKf1PPTZvEIhCyDr81RFqfxZJYrbgp933a1vtg==}
+  /electron-to-chromium@1.4.569:
+    resolution: {integrity: sha512-LsrJjZ0IbVy12ApW3gpYpcmHS3iRxH4bkKOW98y1/D+3cvDUWGcbzbsFinfUS8knpcZk/PG/2p/RnkMCYN7PVg==}
 
   /emittery@0.13.1:
     resolution: {integrity: sha512-DeWwawk6r5yR9jFgnDKYt4sLS0LmHJJi3ZOnb5/JdbYwj3nW+FxQnHIjhBKz8YLC7oRNPVM9NQ47I3CVx34eqQ==}
@@ -2734,8 +2734,8 @@ packages:
       - supports-color
     dev: false
 
-  /eslint-plugin-jest@27.4.3(@typescript-eslint/eslint-plugin@6.9.0)(eslint@8.52.0)(typescript@5.2.2):
-    resolution: {integrity: sha512-7S6SmmsHsgIm06BAGCAxL+ABd9/IB3MWkz2pudj6Qqor2y1qQpWPfuFU4SG9pWj4xDjF0e+D7Llh5useuSzAZw==}
+  /eslint-plugin-jest@27.6.0(@typescript-eslint/eslint-plugin@6.9.0)(eslint@8.52.0)(typescript@5.2.2):
+    resolution: {integrity: sha512-MTlusnnDMChbElsszJvrwD1dN3x6nZl//s4JD23BxB6MgR66TZlL064su24xEIS3VACfAoHV1vgyMgPw8nkdng==}
     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
     peerDependencies:
       '@typescript-eslint/eslint-plugin': ^5.0.0 || ^6.0.0
@@ -2788,7 +2788,7 @@ packages:
       semver: 6.3.1
     dev: false
 
-  /eslint-plugin-playwright@0.16.0(eslint-plugin-jest@27.4.3)(eslint@8.52.0):
+  /eslint-plugin-playwright@0.16.0(eslint-plugin-jest@27.6.0)(eslint@8.52.0):
     resolution: {integrity: sha512-DcHpF0SLbNeh9MT4pMzUGuUSnJ7q5MWbP8sSEFIMS6j7Ggnduq8ghNlfhURgty4c1YFny7Ge9xYTO1FSAoV2Vw==}
     peerDependencies:
       eslint: '>=7'
@@ -2798,7 +2798,7 @@ packages:
         optional: true
     dependencies:
       eslint: 8.52.0
-      eslint-plugin-jest: 27.4.3(@typescript-eslint/eslint-plugin@6.9.0)(eslint@8.52.0)(typescript@5.2.2)
+      eslint-plugin-jest: 27.6.0(@typescript-eslint/eslint-plugin@6.9.0)(eslint@8.52.0)(typescript@5.2.2)
     dev: false
 
   /eslint-plugin-prettier@5.0.1(eslint-config-prettier@9.0.0)(eslint@8.52.0)(prettier@3.0.3):
@@ -2939,7 +2939,7 @@ packages:
     hasBin: true
     dependencies:
       '@eslint-community/eslint-utils': 4.4.0(eslint@8.52.0)
-      '@eslint-community/regexpp': 4.9.1
+      '@eslint-community/regexpp': 4.10.0
       '@eslint/eslintrc': 2.1.2
       '@eslint/js': 8.52.0
       '@humanwhocodes/config-array': 0.11.13
@@ -2983,8 +2983,8 @@ packages:
     resolution: {integrity: sha512-oruZaFkjorTpF32kDSI5/75ViwGeZginGGy2NoOSg3Q9bnwlnmDm4HLnkl0RE3n+njDXR037aY1+x58Z/zFdwQ==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     dependencies:
-      acorn: 8.10.0
-      acorn-jsx: 5.3.2(acorn@8.10.0)
+      acorn: 8.11.2
+      acorn-jsx: 5.3.2(acorn@8.11.2)
       eslint-visitor-keys: 3.4.3
 
   /esprima@4.0.1:
@@ -4625,8 +4625,8 @@ packages:
   /micromark-extension-mdxjs@3.0.0:
     resolution: {integrity: sha512-A873fJfhnJ2siZyUrJ31l34Uqwy4xIFmvPY1oj+Ean5PHcPBYzEsvqvWGaWcfEIr11O5Dlw3p2y0tZWpKHDejQ==}
     dependencies:
-      acorn: 8.10.0
-      acorn-jsx: 5.3.2(acorn@8.10.0)
+      acorn: 8.11.2
+      acorn-jsx: 5.3.2(acorn@8.11.2)
       micromark-extension-mdx-expression: 3.0.0
       micromark-extension-mdx-jsx: 3.0.0
       micromark-extension-mdx-md: 2.0.0
@@ -4895,7 +4895,7 @@ packages:
       '@next/env': 14.0.0
       '@swc/helpers': 0.5.2
       busboy: 1.6.0
-      caniuse-lite: 1.0.30001554
+      caniuse-lite: 1.0.30001555
       postcss: 8.4.31
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
@@ -5845,7 +5845,7 @@ packages:
     hasBin: true
     dependencies:
       '@jridgewell/source-map': 0.3.5
-      acorn: 8.10.0
+      acorn: 8.11.2
       commander: 2.20.3
       source-map-support: 0.5.21
     dev: false
@@ -6273,8 +6273,8 @@ packages:
       '@webassemblyjs/ast': 1.11.6
       '@webassemblyjs/wasm-edit': 1.11.6
       '@webassemblyjs/wasm-parser': 1.11.6
-      acorn: 8.10.0
-      acorn-import-assertions: 1.9.0(acorn@8.10.0)
+      acorn: 8.11.2
+      acorn-import-assertions: 1.9.0(acorn@8.11.2)
       browserslist: 4.22.1
       chrome-trace-event: 1.0.3
       enhanced-resolve: 5.15.0
