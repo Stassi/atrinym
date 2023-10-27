@@ -1,4 +1,4 @@
-import { decrement, increment } from 'arithmetic'
+import { add, decrement, increment, subtract } from 'arithmetic'
 import React, { type JSX } from 'react'
 import { Button, Header } from 'ui'
 import {
@@ -33,7 +33,8 @@ export default function Page(): JSX.Element {
       <Welcome />
       <hr />
       Decrement 0 to obtain {decrement(0)}. Increment 0 to obtain {increment(0)}
-      .
+      . Add 1 to 2 to obtain {add(1, 2)}. Subtract 1 from 2 to obtain
+      {subtract(2, 1)}.
     </>
   )
 }
