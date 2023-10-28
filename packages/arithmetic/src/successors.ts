@@ -1,5 +1,5 @@
-import { curryAdd } from './curry-add.js'
+import { addBy } from './add-by.js'
 
 const ONE = 1
-export const decrement = curryAdd(-ONE)
-export const increment = curryAdd(ONE)
+export const decrement = addBy(-ONE)
+export const increment = addBy(ONE)
