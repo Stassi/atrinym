@@ -33,7 +33,7 @@ describe('successors', (): void => {
       incremented: ReturnType<Increment>
     }): void => {
       describe('decrement(...)', (): void => {
-        it('should increment the value by one integer', (): void => {
+        it('should decrement the value by one integer', (): void => {
           expect(decrement(actual)).toStrictEqual(decremented)
         })
       })
