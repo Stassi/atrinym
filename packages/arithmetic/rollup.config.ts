@@ -7,8 +7,12 @@ const rollupConfig: RollupOptions = {
   output: {
     file: 'dist/index.mjs',
   },
-  // @ts-expect-error -- `@rollup/plugin-typescript` default export is callable
-  plugins: [typescript({ exclude: 'rollup.config.ts' })],
+  plugins: [
+    // @ts-expect-error -- `@rollup/plugin-typescript` default export is callable
+    typescript({
+      exclude: ['**.test.ts', 'rollup.config.ts'],
+    }),
+  ],
 }
 
 // eslint-disable-next-line import/no-default-export -- default export required by rollup.js
