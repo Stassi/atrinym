@@ -5,8 +5,6 @@
   -- `any` required for complex type implementation(s)
 */
 
-type UnaryFn = (...args: any[]) => any
-
 type FirstElement<T extends any[]> = T extends [infer U, ...any[]] ? U : never
 type LastElement<T extends any[]> = T extends [...any[], infer U] ? U : never
 
@@ -14,6 +12,8 @@ type LastElement<T extends any[]> = T extends [...any[], infer U] ? U : never
 type FirstElementParameter<T> = Parameters<FirstElement<T>>[0]
 // @ts-expect-error -- `unknown` type inferred
 type LastElementReturns<T> = ReturnType<LastElement<T>>
+
+type UnaryFn = (...args: any[]) => any
 
 export function nAryPipe<Fns extends UnaryFn[]>(
   ...fns: Fns
