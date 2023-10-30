@@ -12,14 +12,14 @@
     "start:dev": "pnpm run build --watch"
   },
   "dependencies": {
-    "@rollup/plugin-typescript": "^11.1.5",
-    "react": "^18.2.0",
-    "rollup": "^4.1.5"
+    "react": "^18.2.0"
   },
   "devDependencies": {
+    "@rollup/plugin-typescript": "^11.1.5",
     "@types/react": "^18.2.33",
     "@types/react-dom": "^18.2.14",
     "eslint-config-custom": "workspace:*",
+    "rollup": "^4.1.5",
     "tsconfig": "workspace:*"
   },
   "eslintConfig": {
