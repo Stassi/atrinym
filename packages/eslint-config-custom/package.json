@@ -9,10 +9,10 @@
     "integrity:validate": "eslint . --ext cjs,js,json,mjs,ts,tsx"
   },
   "dependencies": {
-    "@typescript-eslint/eslint-plugin": "^6.7.5",
-    "@typescript-eslint/parser": "^6.7.5",
+    "@typescript-eslint/eslint-plugin": "^6.9.1",
+    "@typescript-eslint/parser": "^6.9.1",
     "@vercel/style-guide": "^5.0.1",
-    "eslint-config-next": "^14.0.0",
+    "eslint-config-next": "^14.0.1",
     "eslint-config-prettier": "^9.0.0",
     "eslint-config-turbo": "^1.10.16",
     "eslint-import-resolver-typescript": "^3.6.1",
