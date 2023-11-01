@@ -13,25 +13,25 @@ type FirstElementParameter<T> = Parameters<FirstElement<T>>[0]
 // @ts-expect-error -- `unknown` type inferred
 type LastElementReturns<T> = ReturnType<LastElement<T>>
 
-type UnaryFn = (...args: any[]) => any
+type VariadicFn = (...args: any[]) => any
 
-export function nAryPipe<Fns extends UnaryFn[]>(
-  ...fns: Fns
+export function unaryPipe<Fns extends VariadicFn[]>(
+  fns: [...Fns],
 ): (initial: FirstElementParameter<Fns>) => LastElementReturns<Fns> {
   return (initial: FirstElementParameter<Fns>): LastElementReturns<Fns> => {
     return fns.reduce(
-      (accumulated: any, fn: UnaryFn) => fn(accumulated),
+      (accumulated: any, fn: VariadicFn) => fn(accumulated),
       initial,
     )
   }
 }
 
-export function unaryPipe<Fns extends UnaryFn[]>(
-  fns: [...Fns],
+export function variadicPipe<Fns extends VariadicFn[]>(
+  ...fns: Fns
 ): (initial: FirstElementParameter<Fns>) => LastElementReturns<Fns> {
   return (initial: FirstElementParameter<Fns>): LastElementReturns<Fns> => {
     return fns.reduce(
-      (accumulated: any, fn: UnaryFn) => fn(accumulated),
+      (accumulated: any, fn: VariadicFn) => fn(accumulated),
       initial,
     )
   }
