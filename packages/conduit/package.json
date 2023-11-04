@@ -2,9 +2,9 @@
   "name": "conduit",
   "version": "0.0.0",
   "private": true,
+  "type": "module",
   "main": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
-  "type": "module",
   "exports": {
     ".": {
       "import": "./dist/index.mjs",

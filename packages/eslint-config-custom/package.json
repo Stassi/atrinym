@@ -1,9 +1,10 @@
 {
   "name": "eslint-config-custom",
   "version": "0.0.0",
-  "main": "index.cjs",
+  "private": true,
   "type": "module",
-  "license": "MIT",
+  "main": "./index.cjs",
+  "exports": "./index.cjs",
   "scripts": {
     "integrity:repair": "pnpm run integrity:validate --fix",
     "integrity:validate": "eslint . --ext cjs,js,json,mjs,ts,tsx"

@@ -2,9 +2,13 @@
   "name": "arithmetic",
   "version": "0.0.0",
   "private": true,
-  "main": "dist/index.mjs",
-  "types": "dist/index.d.ts",
   "type": "module",
+  "main": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    "import": "./dist/index.mjs",
+    "types": "./dist/index.d.ts"
+  },
   "scripts": {
     "build": "rollup -c rollup.config.ts --configPlugin typescript",
     "integrity:repair": "pnpm run integrity:validate --fix",
