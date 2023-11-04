@@ -2,9 +2,19 @@
   "name": "conduit",
   "version": "0.0.0",
   "private": true,
-  "main": "dist/index.mjs",
-  "types": "dist/index.d.ts",
+  "main": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
   "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.ts"
+    },
+    "./ramda": {
+      "import": "./dist/ramda/index.mjs",
+      "types": "./dist/ramda/index.d.ts"
+    }
+  },
   "scripts": {
     "build": "rollup -c rollup.config.ts --configPlugin typescript",
     "integrity:repair": "pnpm run integrity:validate --fix",
@@ -12,8 +22,12 @@
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
     "start:dev": "pnpm run build --watch"
   },
+  "dependencies": {
+    "ramda-typed": "workspace:*"
+  },
   "devDependencies": {
     "@jest/globals": "^29.7.0",
+    "@rollup/plugin-node-resolve": "^15.2.3",
     "@rollup/plugin-typescript": "^11.1.5",
     "arithmetic": "workspace:*",
     "eslint-config-custom": "workspace:*",
