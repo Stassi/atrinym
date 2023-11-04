@@ -2,7 +2,6 @@ import { type RollupOptions } from 'rollup'
 import typescript from '@rollup/plugin-typescript'
 
 const rollupConfig: RollupOptions = {
-  external: ['react/jsx-runtime'],
   input: 'src/index.ts',
   output: {
     file: 'dist/index.mjs',

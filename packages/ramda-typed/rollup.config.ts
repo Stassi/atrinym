@@ -9,7 +9,6 @@ import typescript from '@rollup/plugin-typescript'
 const rollupConfig: RollupOptions = {
   // An undefined `context` implements the https://en.wikipedia.org/wiki/Principle_of_least_astonishment
   context: 'undefined',
-  external: ['react/jsx-runtime'],
   input: 'src/index.ts',
   /**
    * Suppresses warning: https://rollupjs.org/guide/en/#error-this-is-undefined
