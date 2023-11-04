@@ -17,7 +17,7 @@
     "turbo:daemon:reload": "turbo daemon clean"
   },
   "devDependencies": {
-    "eslint": "^8.51.0",
+    "eslint": "^8.53.0",
     "eslint-config-custom": "workspace:*",
     "prettier": "3.0.3",
     "turbo": "^1.10.16",
