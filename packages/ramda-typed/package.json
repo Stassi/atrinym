@@ -1,0 +1,32 @@
+{
+  "name": "ramda-typed",
+  "version": "0.0.0",
+  "private": true,
+  "main": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "type": "module",
+  "scripts": {
+    "build": "rollup -c rollup.config.ts --configPlugin typescript",
+    "integrity:repair": "pnpm run integrity:validate --fix",
+    "integrity:validate": "eslint . --ext cjs,js,json,mjs,ts,tsx",
+    "start:dev": "pnpm run build --watch"
+  },
+  "dependencies": {
+    "ramda": "^0.29.1"
+  },
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-typescript": "^11.1.5",
+    "@types/ramda": "^0.29.7",
+    "arithmetic": "workspace:*",
+    "eslint-config-custom": "workspace:*",
+    "rollup": "^4.2.0",
+    "tsconfig": "workspace:*",
+    "types-ramda": "^0.29.5",
+    "typescript": "^5.2.2"
+  },
+  "eslintConfig": {
+    "extends": "custom",
+    "root": true
+  }
+}
