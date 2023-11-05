@@ -1,4 +1,4 @@
-import { type MDXContent } from 'mdx/types'
+import { type MDXContent } from 'mdx/types.js'
 import { type JSX } from 'react'
 import HelloWorldNonaryUntyped, {
   // @ts-expect-error -- manual verification of member export

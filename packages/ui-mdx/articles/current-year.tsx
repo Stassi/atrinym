@@ -1,4 +1,4 @@
-import { type MDXProps } from 'mdx/types'
+import { type MDXProps } from 'mdx/types.js'
 import { type JSX } from 'react'
 import CurrentYearUntyped from './current-year.mdx'
 
