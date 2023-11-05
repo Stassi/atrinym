@@ -25,7 +25,7 @@ const rollupConfig: RollupOptions = {
     nodeResolve(),
     // @ts-expect-error -- `@rollup/plugin-typescript` default export is callable
     typescript({
-      exclude: ['**.test.ts', 'rollup.config.ts'],
+      exclude: ['rollup.config.ts'],
     }),
   ],
 }
