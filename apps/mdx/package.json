@@ -2,6 +2,7 @@
   "name": "mdx",
   "version": "0.0.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "build": "next build",
     "integrity:repair": "pnpm run integrity:validate --fix",

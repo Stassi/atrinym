@@ -1,6 +1,8 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
   "compilerOptions": {
+    "module": "NodeNext",
+    "moduleResolution": "nodenext",
     "plugins": [
       {
         "name": "next"
