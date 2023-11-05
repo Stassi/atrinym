@@ -1,4 +1,4 @@
-import { type RollupOptions, type Plugin } from 'rollup'
+import { type Plugin, type RollupOptions } from 'rollup'
 import { nodeResolve } from '@rollup/plugin-node-resolve'
 import typescriptErroneouslyTyped, {
   type RollupTypescriptOptions,
