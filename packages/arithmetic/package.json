@@ -6,8 +6,14 @@
   "main": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "exports": {
-    "import": "./dist/index.mjs",
-    "types": "./dist/index.d.ts"
+    ".": {
+      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.ts"
+    },
+    "./ramda": {
+      "import": "./dist/ramda/index.mjs",
+      "types": "./dist/ramda/index.d.ts"
+    }
   },
   "scripts": {
     "build": "rollup -c rollup.config.ts --configPlugin typescript",
@@ -18,10 +24,12 @@
   },
   "devDependencies": {
     "@jest/globals": "^29.7.0",
+    "@rollup/plugin-node-resolve": "^15.2.3",
     "@rollup/plugin-typescript": "^11.1.5",
     "eslint-config-custom": "workspace:*",
     "jest": "^29.7.0",
     "jest-resolve": "^29.7.0",
+    "ramda-typed": "workspace:*",
     "rollup": "^4.2.0",
     "ts-jest": "29.1.1",
     "tsconfig": "workspace:*",
