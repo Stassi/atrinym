@@ -22,7 +22,6 @@
     "@rollup/plugin-node-resolve": "^15.2.3",
     "@rollup/plugin-typescript": "^11.1.5",
     "@types/ramda": "^0.29.7",
-    "arithmetic": "workspace:*",
     "eslint-config-custom": "workspace:*",
     "rollup": "^4.2.0",
     "tsconfig": "workspace:*",
