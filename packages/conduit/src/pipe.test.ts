@@ -1,15 +1,8 @@
 import { describe, expect, it } from '@jest/globals'
+import { dec as decrement, inc as increment } from 'ramda-typed'
 import { unaryPipe, variadicPipe } from './pipe.js'
 
 type NumberCallback = (n: number) => number
-
-function decrement(n: number): number {
-  return n - 1
-}
-
-function increment(n: number): number {
-  return n + 1
-}
 
 describe('unaryPipe(...)', (): void => {
   describe('addOne(...)', (): void => {

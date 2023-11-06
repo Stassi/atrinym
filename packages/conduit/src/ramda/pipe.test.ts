@@ -1,5 +1,5 @@
 import { describe, expect, it } from '@jest/globals'
-import { decrement, increment } from 'arithmetic'
+import { dec as decrement, inc as increment } from 'ramda-typed'
 import { pipe as ramdaPipe } from './pipe.js'
 
 type NumberCallback = (n: number) => number
