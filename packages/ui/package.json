@@ -15,14 +15,12 @@
     "integrity:validate": "eslint . --ext cjs,js,json,mjs,ts,tsx",
     "start:dev": "pnpm run build --watch"
   },
-  "dependencies": {
-    "react": "^18.2.0"
-  },
   "devDependencies": {
     "@rollup/plugin-typescript": "^11.1.5",
     "@types/react": "^18.2.35",
     "@types/react-dom": "^18.2.14",
     "eslint-config-custom": "workspace:*",
+    "react": "^18.2.0",
     "rollup": "^4.2.0",
     "tsconfig": "workspace:*"
   },
