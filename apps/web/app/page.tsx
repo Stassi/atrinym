@@ -3,9 +3,11 @@ import {
   addBy,
   decrement,
   increment,
+  negate as negateNative,
   subtract,
   tupleAdd,
 } from 'arithmetic'
+import { negate as negateRamda } from 'arithmetic/ramda'
 import React, { type JSX } from 'react'
 import { Button, Header } from 'ui'
 import {
@@ -41,7 +43,8 @@ export default function Page(): JSX.Element {
       <hr />
       Decrement 0 to obtain {decrement(0)}. Increment 0 to obtain {increment(0)}
       . Add 1 to 2 to obtain {add(1, 2)} or {addBy(1)(2)} or {tupleAdd([1, 2])}.
-      Subtract 1 from 2 to obtain {subtract(2, 1)}.
+      Subtract 1 from 2 to obtain {subtract(2, 1)}. Negation of 1 is{' '}
+      {negateNative(1)} or {negateRamda(1)}.
     </>
   )
 }
