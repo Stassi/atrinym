@@ -151,9 +151,6 @@ importers:
       '@rollup/plugin-typescript':
         specifier: ^11.1.5
         version: 11.1.5(rollup@4.3.0)(typescript@5.2.2)
-      arithmetic:
-        specifier: workspace:*
-        version: link:../arithmetic
       eslint-config-custom:
         specifier: workspace:*
         version: link:../eslint-config-custom
