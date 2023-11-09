@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "compilerOptions": {
+    "module": "NodeNext",
+    "outDir": "dist"
+  },
+  "exclude": [
+    "dist",
+    "node_modules"
+  ],
+  "extends": "tsconfig/ts-jest.json",
+  "include": [
+    "."
+  ]
+}

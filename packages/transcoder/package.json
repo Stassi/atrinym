@@ -1,0 +1,54 @@
+{
+  "name": "transcoder",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "main": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    "import": "./dist/index.mjs",
+    "types": "./dist/index.d.ts"
+  },
+  "scripts": {
+    "build": "rollup -c rollup.config.ts --configPlugin typescript",
+    "integrity:repair": "pnpm run integrity:validate --fix",
+    "integrity:validate": "eslint . --ext cjs,js,json,mjs,ts,tsx",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "start:dev": "pnpm run build --watch"
+  },
+  "devDependencies": {
+    "@jest/globals": "^29.7.0",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-typescript": "^11.1.5",
+    "eslint-config-custom": "workspace:*",
+    "jest": "^29.7.0",
+    "jest-resolve": "^29.7.0",
+    "rollup": "^4.2.0",
+    "ts-jest": "29.1.1",
+    "tsconfig": "workspace:*",
+    "typescript": "^5.2.2"
+  },
+  "eslintConfig": {
+    "extends": "custom",
+    "root": true
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "^(\\.{1,2}/.*)\\.js$": "$1"
+    },
+    "preset": "ts-jest/presets/js-with-ts-esm",
+    "resolver": "<rootDir>/jest-mjs-resolver.cjs",
+    "testMatch": [
+      "**/__tests__/**/*.?(m)[jt]s?(x)",
+      "**/?(*.)+(spec|test).?(m)[jt]s?(x)"
+    ],
+    "transform": {
+      "^.+\\\\.m?[jt]sx?$": [
+        "ts-jest",
+        {
+          "useESM": true
+        }
+      ]
+    }
+  }
+}
