@@ -1,0 +1,19 @@
+import { entable } from '../../arrays/entable.js'
+import { toNumbers } from '../to-numbers.js'
+
+type IncludesArrayBuffer = { buffer: ArrayBufferLike }
+type Diffuse<T> = (x: T) => Uint8Array
+
+function diffuse(width: number): (x: IncludesArrayBuffer) => Uint8Array {
+  return ({ buffer: arrayBuffer }: IncludesArrayBuffer): Uint8Array => {
+    return Uint8Array.from(
+      entable({ data: toNumbers(arrayBuffer).reverse(), width })
+        .reverse()
+        .flat(),
+    )
+  }
+}
+
+export const diffuse16: Diffuse<Uint16Array> = diffuse(2),
+  diffuse32: Diffuse<Uint32Array> = diffuse(4),
+  diffuse64: Diffuse<BigUint64Array> = diffuse(8)
