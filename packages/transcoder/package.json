@@ -21,6 +21,7 @@
     "@rollup/plugin-node-resolve": "^15.2.3",
     "@rollup/plugin-typescript": "^11.1.5",
     "@types/node": "^20.9.0",
+    "arithmetic": "workspace:*",
     "eslint-config-custom": "workspace:*",
     "jest": "^29.7.0",
     "jest-resolve": "^29.7.0",

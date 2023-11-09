@@ -259,6 +259,9 @@ importers:
       '@types/node':
         specifier: ^20.9.0
         version: 20.9.0
+      arithmetic:
+        specifier: workspace:*
+        version: link:../arithmetic
       eslint-config-custom:
         specifier: workspace:*
         version: link:../eslint-config-custom
