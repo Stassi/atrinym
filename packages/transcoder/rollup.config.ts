@@ -17,7 +17,7 @@ const typescript =
       plugins: [
         nodeResolve(),
         typescript({
-          exclude: ['src/ramda/**.ts', '**.test.ts', 'rollup.config.ts'],
+          exclude: ['**.test.ts', 'rollup.config.ts'],
         }),
       ],
     },
