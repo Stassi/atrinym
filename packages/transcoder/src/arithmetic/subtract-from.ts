@@ -1,3 +1,4 @@
+// TODO: Merge with `package:arithmetic`
 import { add } from './add.js'
 import { negate } from './negate.js'
 
