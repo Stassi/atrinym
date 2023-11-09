@@ -2,7 +2,9 @@
   "$schema": "https://json.schemastore.org/tsconfig",
   "compilerOptions": {
     "module": "NodeNext",
-    "outDir": "dist"
+    "moduleResolution": "nodenext",
+    "outDir": "dist",
+    "target": "ESNext"
   },
   "exclude": [
     "dist",

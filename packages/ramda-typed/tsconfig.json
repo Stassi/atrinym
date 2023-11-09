@@ -7,7 +7,8 @@
     "outDir": "dist",
     "paths": {
       "ramda": ["types-ramda"]
-    }
+    },
+    "target": "ESNext"
   },
   "exclude": [
     "dist",
