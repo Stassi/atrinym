@@ -1,4 +1,4 @@
-import { length } from '../strings/length.js'
+import { length } from 'sequences'
 import { modDivideBy } from '../arithmetic/mod-divide-by.js'
 import { strictEquals } from '../logic/strict-equals.js'
 import { subtractFrom } from '../arithmetic/subtract-from.js'

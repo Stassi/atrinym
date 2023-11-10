@@ -1,5 +1,5 @@
 import { describe, expect, it } from '@jest/globals'
-import { length } from '../strings/length.js'
+import { length } from 'sequences'
 import { modDivideByBits, padBinary } from './to-binary.js'
 
 describe('pad binary octet', () => {

@@ -1,4 +1,4 @@
-import { length } from '../strings/length.js'
+import { length } from 'sequences'
 
 const OCTET_BITS = 8
 

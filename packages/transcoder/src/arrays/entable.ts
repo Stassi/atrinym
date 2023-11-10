@@ -1,5 +1,5 @@
 import { add } from 'arithmetic'
-import { length } from '../strings/length.js'
+import { length } from 'sequences'
 import { modDivideBy } from '../arithmetic/mod-divide-by.js'
 import { strictEquals } from '../logic/strict-equals.js'
 import { createState } from '../state/create-state.js'

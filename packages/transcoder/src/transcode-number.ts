@@ -1,5 +1,5 @@
 import { Buffer } from 'node:buffer'
-import { length } from './strings/length.js'
+import { length } from 'sequences'
 import { subdivide as subdivideOctets } from './octet/subdivide.js'
 import { toBinary } from './octet/to-binary.js'
 import { toDecimal } from './octet/to-decimal.js'
