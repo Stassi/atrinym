@@ -47,12 +47,12 @@ describe('createState(...)', (): void => {
     }: Test<typeof doubleNumber | typeof doubleString>): void => {
       type TestState = State<ReturnType<typeof double>>
 
-      it('should initialize with its initial value', (): void => {
+      it('should initialize with its initial state', (): void => {
         const state: TestState = createState(actual)
         expect(state.get()).toBe(actual)
       })
 
-      it('should mutate and retrieve its current state', (): void => {
+      it('should mutate, then retrieve its current state', (): void => {
         const state: TestState = createState(actual)
 
         // @ts-expect-error -- known but incorrectly inferred argument type
