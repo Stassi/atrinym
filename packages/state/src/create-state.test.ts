@@ -53,7 +53,16 @@ describe('createState(...)', (): void => {
         expect(state.get()).toBe(actual)
       })
 
-      it('should mutate, then retrieve its current state', (): void => {
+      it('should update, then retrieve its current state', (): void => {
+        const state: TestState = createState(actual)
+
+        // @ts-expect-error -- known but incorrectly inferred argument type
+        state.update((prev: T) => double(prev))
+
+        expect(state.get()).toBe(expected)
+      })
+
+      it('should set, then retrieve its current state', (): void => {
         const state: TestState = createState(actual)
 
         // @ts-expect-error -- known but incorrectly inferred argument type
