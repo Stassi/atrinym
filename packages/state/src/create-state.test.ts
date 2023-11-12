@@ -45,7 +45,8 @@ describe('createState(...)', (): void => {
       double,
       expected,
     }: Test<typeof doubleNumber | typeof doubleString>): void => {
-      type TestState = State<ReturnType<typeof double>>
+      type T = ReturnType<typeof double>
+      type TestState = State<T>
 
       it('should initialize with its initial state', (): void => {
         const state: TestState = createState(actual)
