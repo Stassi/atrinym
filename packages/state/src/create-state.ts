@@ -2,6 +2,7 @@ export type State<T> = {
   get: () => T
   reset: () => void
   set: (x: T) => void
+  update: (x: (previous: T) => T) => void
 }
 
 export const createState: <T>(initial: T) => State<T> = function createState<T>(
@@ -17,6 +18,9 @@ export const createState: <T>(initial: T) => State<T> = function createState<T>(
     },
     set(x: T): void {
       state = x
+    },
+    update(x: (previous: T) => T): void {
+      state = x(state)
     },
   }
 }
