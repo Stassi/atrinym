@@ -349,6 +349,9 @@ importers:
       sequences:
         specifier: workspace:*
         version: link:../sequences
+      state:
+        specifier: workspace:*
+        version: link:../state
       ts-jest:
         specifier: 29.1.1
         version: 29.1.1(@babel/core@7.23.2)(jest@29.7.0)(typescript@5.2.2)
