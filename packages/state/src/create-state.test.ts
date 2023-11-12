@@ -60,6 +60,17 @@ describe('createState(...)', (): void => {
 
         expect(state.get()).toBe(expected)
       })
+
+      it('should mutate, reset, then return its initial state', (): void => {
+        const state: TestState = createState(actual)
+
+        // @ts-expect-error -- known but incorrectly inferred argument type
+        state.set(double(state.get()))
+
+        state.reset()
+
+        expect(state.get()).toBe(actual)
+      })
     },
   )
 })
