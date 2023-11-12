@@ -1,8 +1,8 @@
 import { add } from 'arithmetic'
 import { length } from 'sequences'
+import { createState } from 'state'
 import { modDivideBy } from '../arithmetic/mod-divide-by.js'
 import { strictEquals } from '../logic/strict-equals.js'
-import { createState } from '../state/create-state.js'
 
 type EntableRoundState<T> = {
   complete: boolean
