@@ -19,8 +19,8 @@ export const createState: <T>(initial: T) => State<T> = function createState<T>(
     set(x: T): void {
       state = x
     },
-    update(x: (previous: T) => T): void {
-      state = x(state)
+    update(fn: (previous: T) => T): void {
+      state = fn(state)
     },
   }
 }
