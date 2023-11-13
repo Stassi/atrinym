@@ -1,6 +1,6 @@
 import { add } from 'arithmetic'
 import { length } from 'sequences'
-import { createState } from 'state'
+import { createState, type State } from 'state'
 import { modDivideBy } from '../arithmetic/mod-divide-by.js'
 import { strictEquals } from '../logic/strict-equals.js'
 
@@ -65,7 +65,9 @@ export function entable<T>({
       `Input length must be evenly divisible by width: ${width}`,
     )
 
-  const { get: getRound, set: setRound } = createState(round({ data, width }))
+  const { get: getRound, set: setRound }: State<EntableRound<T>> = createState(
+    round({ data, width }),
+  )
 
   while (!getRound().state.complete) {
     setRound(getRound().next())
