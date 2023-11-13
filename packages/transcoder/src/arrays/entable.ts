@@ -1,3 +1,4 @@
+// TODO: Extract to `package:tables`
 import { add } from 'arithmetic'
 import { length } from 'sequences'
 import { createState, type State } from 'state'
