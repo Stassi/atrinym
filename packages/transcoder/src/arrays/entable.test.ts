@@ -49,7 +49,7 @@ describe('entable', (): void => {
       actual: unknown[]
       expected: unknown[][]
       width: number
-    }) => {
+    }): void => {
       it('should return a table with rows of the given width', (): void => {
         expect(entable({ data: actual, width })).toStrictEqual(expected)
       })
