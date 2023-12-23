@@ -21,7 +21,7 @@
     "@types/ramda": "^0.29.9",
     "eslint-config-custom": "workspace:*",
     "ramda": "^0.29.1",
-    "rollup": "^4.2.0",
+    "rollup": "^4.9.1",
     "tsconfig": "workspace:*",
     "types-ramda": "^0.29.6",
     "typescript": "^5.2.2"
