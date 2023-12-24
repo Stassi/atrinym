@@ -1,3 +1,5 @@
+// noinspection SpellCheckingInspection
+
 import { Buffer } from 'node:buffer'
 import { describe, expect, it } from '@jest/globals'
 import {
