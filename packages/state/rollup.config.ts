@@ -1,5 +1,4 @@
 import { type Plugin, type RollupOptions } from 'rollup'
-import { nodeResolve } from '@rollup/plugin-node-resolve'
 import typescriptErroneouslyTyped, {
   type RollupTypescriptOptions,
 } from '@rollup/plugin-typescript'
@@ -15,7 +14,6 @@ const typescript =
         file: 'dist/index.mjs',
       },
       plugins: [
-        nodeResolve(),
         typescript({
           exclude: ['**.test.ts', 'rollup.config.ts'],
         }),
