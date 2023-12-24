@@ -1,1 +1,1 @@
-// TODO: Package exports, integration testing
+export * from './elementary-ruleset.js'
