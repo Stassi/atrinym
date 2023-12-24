@@ -2,7 +2,7 @@
   "$schema": "https://json.schemastore.org/tsconfig",
   "compilerOptions": {
     "target": "ESNext",
-    "moduleResolution": "nodenext"
+    "moduleResolution": "NodeNext"
   },
   "display": "TypeScript Jest Library",
   "extends": "./base.json"
