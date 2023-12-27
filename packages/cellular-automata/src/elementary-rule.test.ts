@@ -55,11 +55,14 @@ describe('elementaryRule(...)', (): void => {
     [],
     [false],
     [false, false, false, false, true, false, false, false, false],
-  ])('ruleset: %p', (actual: boolean[] | string): void => {
-    it('should throw a RangeError', (): void => {
-      expect(() => elementaryRule(actual)).toThrow(
-        'Octet input length must be 8.',
-      )
-    })
-  })
+  ])(
+    'ruleset: %p (invalid octet length)',
+    (actual: boolean[] | string): void => {
+      it('should throw a RangeError', (): void => {
+        expect(() => elementaryRule(actual)).toThrow(
+          'Octet input length must be 8.',
+        )
+      })
+    },
+  )
 })

@@ -60,7 +60,7 @@ describe('elementary ruleset', (): void => {
         'Range overflow: Integer input must be less than or equal to 255.',
     },
   ])(
-    'rule: $actual',
+    'rule: $actual (invalid octet)',
     ({ actual, expected }: { actual: number; expected: string }): void => {
       describe('to binary', (): void => {
         it('should throw a RangeError', (): void => {
