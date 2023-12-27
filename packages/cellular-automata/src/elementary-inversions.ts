@@ -2,6 +2,8 @@ import { binaryToBooleans } from './octet/binary-to-booleans.js'
 import { booleansToBinary } from './octet/booleans-to-binary.js'
 import { reverse } from './sequences/reverse.js'
 
+type StringCallback = (s: string) => string
+
 export function invertColorBooleans(x: boolean[]): boolean[] {
   return reverse(x).map((y: boolean): boolean => !y)
 }
@@ -18,17 +20,15 @@ export function invertColorAndLeftRightBooleans(x: boolean[]): boolean[] {
 function binaryInversionFromBooleansInversion(
   invertBooleans: (x: boolean[]) => boolean[],
 ) {
-  // noinspection JSSuspiciousNameCombination
-  return (y: string): string =>
-    booleansToBinary(invertBooleans(binaryToBooleans(y)))
+  return (s: string): string =>
+    booleansToBinary(invertBooleans(binaryToBooleans(s)))
 }
 
-export const invertColorBinary =
+export const invertColorBinary: StringCallback =
   binaryInversionFromBooleansInversion(invertColorBooleans)
 
-export const invertLeftRightBinary = binaryInversionFromBooleansInversion(
-  invertLeftRightBooleans,
-)
+export const invertLeftRightBinary: StringCallback =
+  binaryInversionFromBooleansInversion(invertLeftRightBooleans)
 
-export const invertColorAndLeftRightBinary =
+export const invertColorAndLeftRightBinary: StringCallback =
   binaryInversionFromBooleansInversion(invertColorAndLeftRightBooleans)
