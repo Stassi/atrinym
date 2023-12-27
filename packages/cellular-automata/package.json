@@ -24,6 +24,7 @@
     "jest": "^29.7.0",
     "jest-resolve": "^29.7.0",
     "rollup": "^4.9.1",
+    "sequences": "workspace:*",
     "ts-jest": "29.1.1",
     "transcoder": "workspace:*",
     "tsconfig": "workspace:*",

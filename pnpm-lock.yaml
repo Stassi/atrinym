@@ -163,6 +163,9 @@ importers:
       rollup:
         specifier: ^4.9.1
         version: 4.9.1
+      sequences:
+        specifier: workspace:*
+        version: link:../sequences
       transcoder:
         specifier: workspace:*
         version: link:../transcoder
