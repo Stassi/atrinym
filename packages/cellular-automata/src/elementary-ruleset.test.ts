@@ -1,29 +1,49 @@
 import { describe, expect, it } from '@jest/globals'
-import { elementaryRuleset } from './elementary-ruleset.js'
+import { rulesetToBinary, rulesetToBooleans } from './elementary-ruleset.js'
 
-describe('elementaryRuleset(...)', (): void => {
+describe('elementary ruleset', (): void => {
   describe.each([
     {
       actual: 0,
-      expected: [false, false, false, false, false, false, false, false],
+      binary: '00000000',
+      booleans: [false, false, false, false, false, false, false, false],
     },
     {
       actual: 30,
-      expected: [false, false, false, true, true, true, true, false],
+      binary: '00011110',
+      booleans: [false, false, false, true, true, true, true, false],
     },
     {
       actual: 110,
-      expected: [false, true, true, false, true, true, true, false],
+      binary: '01101110',
+      booleans: [false, true, true, false, true, true, true, false],
     },
     {
       actual: 255,
-      expected: [true, true, true, true, true, true, true, true],
+      binary: '11111111',
+      booleans: [true, true, true, true, true, true, true, true],
     },
   ])(
     'rule: $actual',
-    ({ actual, expected }: { actual: number; expected: boolean[] }): void => {
-      it('should return a boolean array representing its elementary rules', (): void => {
-        expect(elementaryRuleset(actual)).toStrictEqual(expected)
+    ({
+      actual,
+      binary,
+      booleans,
+    }: {
+      actual: number
+      binary: string
+      booleans: boolean[]
+    }): void => {
+      describe('to binary', (): void => {
+        it('should return its elementary ruleset', (): void => {
+          expect(rulesetToBinary(actual)).toStrictEqual(binary)
+        })
+      })
+
+      describe('to booleans', (): void => {
+        it('should return its elementary ruleset', (): void => {
+          expect(rulesetToBooleans(actual)).toStrictEqual(booleans)
+        })
       })
     },
   )
@@ -42,8 +62,16 @@ describe('elementaryRuleset(...)', (): void => {
   ])(
     'rule: $actual',
     ({ actual, expected }: { actual: number; expected: string }): void => {
-      it('should throw a RangeError', (): void => {
-        expect(() => elementaryRuleset(actual)).toThrow(expected)
+      describe('to binary', (): void => {
+        it('should throw a RangeError', (): void => {
+          expect(() => rulesetToBinary(actual)).toThrow(expected)
+        })
+      })
+
+      describe('to booleans', (): void => {
+        it('should throw a RangeError', (): void => {
+          expect(() => rulesetToBooleans(actual)).toThrow(expected)
+        })
       })
     },
   )
