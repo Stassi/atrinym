@@ -1,7 +1,5 @@
 import { transcode } from 'transcoder'
-import { strictEquals } from './logic/strict-equals.js'
-
-const strictEqualsOne: (x: string) => boolean = strictEquals('1')
+import { binaryToBooleans } from './octet/binary-to-booleans.js'
 
 export function rulesetToBinary(n: number): string {
   if (n < 0)
@@ -17,5 +15,5 @@ export function rulesetToBinary(n: number): string {
 }
 
 export function rulesetToBooleans(n: number): boolean[] {
-  return rulesetToBinary(n).split('').map(strictEqualsOne)
+  return binaryToBooleans(rulesetToBinary(n))
 }
