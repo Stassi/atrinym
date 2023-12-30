@@ -1,10 +1,9 @@
 import { length } from 'sequences'
+import { transcode, fromBinary } from 'transcoder'
 import { reverse } from '../sequences/reverse.js'
 import { strictEquals } from '../logic/strict-equals.js'
 import { booleansToBinary } from '../octet/booleans-to-binary.js'
 import { binaryToBooleans } from '../octet/binary-to-booleans.js'
-import { rulesetToRule } from './ruleset-to-rule.js'
-import { ruleToBinary, ruleToBooleans } from './rule-to-ruleset.js'
 
 export type ElementaryRule = {
   complement: () => number
@@ -13,6 +12,18 @@ export type ElementaryRule = {
   toBinary: () => string
   toBooleans: () => boolean[]
   toDecimal: () => number
+}
+
+function ruleToBinary(n: number): string {
+  return transcode(n).toBinary()
+}
+
+function ruleToBooleans(n: number): boolean[] {
+  return binaryToBooleans(ruleToBinary(n))
+}
+
+function rulesetToRule(x: boolean[] | string): number {
+  return fromBinary(typeof x === 'string' ? x : booleansToBinary(x)).toNumber()
 }
 
 function complement(x: boolean[]): boolean[] {
