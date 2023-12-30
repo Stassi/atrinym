@@ -6,9 +6,9 @@ import { booleansToBinary } from './octet/booleans-to-binary.js'
 import { binaryToBooleans } from './octet/binary-to-booleans.js'
 
 export type ElementaryRule = {
-  complement: () => number
-  complementAndReflect: () => number
-  reflect: () => number
+  complement: () => ElementaryRule
+  complementAndReflect: () => ElementaryRule
+  reflect: () => ElementaryRule
   toBinary: () => string
   toBooleans: () => boolean[]
   toDecimal: () => number
@@ -55,20 +55,19 @@ export function elementaryRule(x: boolean[] | number | string): ElementaryRule {
   } else if (!strictEqualsEight(length(x)))
     throw new RangeError('Octet length must equal 8')
 
-  // TODO: Equivalence methods should return an ElementaryRule instead of a number
   // TODO: Reduce duplication in equivalencesFromInversionBinary(binaryInversionFromBooleansInversion(...)) & simplify
 
   return {
-    complement(): number {
+    complement(): ElementaryRule {
       const complementRule: (n: number) => number =
         equivalencesFromInversionBinary(
           binaryInversionFromBooleansInversion(complement),
         )
 
-      if (typeof x === 'number') return complementRule(x)
-      return complementRule(rulesetToRule(x))
+      if (typeof x === 'number') return elementaryRule(complementRule(x))
+      return elementaryRule(complementRule(rulesetToRule(x)))
     },
-    complementAndReflect(): number {
+    complementAndReflect(): ElementaryRule {
       // TODO: Remove and replace with chained method calls
 
       function complementAndReflect(y: boolean[]): boolean[] {
@@ -81,17 +80,18 @@ export function elementaryRule(x: boolean[] | number | string): ElementaryRule {
           binaryInversionFromBooleansInversion(complementAndReflect),
         )
 
-      if (typeof x === 'number') return complementAndReflectRule(x)
-      return complementAndReflectRule(rulesetToRule(x))
+      if (typeof x === 'number')
+        return elementaryRule(complementAndReflectRule(x))
+      return elementaryRule(complementAndReflectRule(rulesetToRule(x)))
     },
-    reflect(): number {
+    reflect(): ElementaryRule {
       const reflectRule: (n: number) => number =
         equivalencesFromInversionBinary(
           binaryInversionFromBooleansInversion(reflect),
         )
 
-      if (typeof x === 'number') return reflectRule(x)
-      return reflectRule(rulesetToRule(x))
+      if (typeof x === 'number') return elementaryRule(reflectRule(x))
+      return elementaryRule(reflectRule(rulesetToRule(x)))
     },
     toBinary(): string {
       if (typeof x === 'number') return ruleToBinary(x)
