@@ -27,6 +27,7 @@ function rulesetToRule(x: boolean[] | string): number {
   return fromBinary(typeof x === 'string' ? x : booleansToBinary(x)).toNumber()
 }
 
+// TODO: Rename function
 function binaryInversionFromBooleansInversion(
   invertBooleans: (x: boolean[]) => boolean[],
 ) {
@@ -34,6 +35,7 @@ function binaryInversionFromBooleansInversion(
     booleansToBinary(invertBooleans(binaryToBooleans(s)))
 }
 
+// TODO: Rename function
 function equivalencesFromInversionBinary(invert: (s: string) => string) {
   return (n: number): number => rulesetToRule(invert(ruleToBinary(n)))
 }
