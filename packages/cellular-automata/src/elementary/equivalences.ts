@@ -2,9 +2,9 @@ import {
   invertColorBinary,
   invertLeftRightBinary,
   invertColorAndLeftRightBinary,
-} from './elementary-inversions.js'
-import { rulesetToRule } from './elementary-ruleset-to-rule.js'
-import { ruleToBinary } from './elementary-rule-to-ruleset.js'
+} from './inversions.js'
+import { rulesetToRule } from './ruleset-to-rule.js'
+import { ruleToBinary } from './rule-to-ruleset.js'
 
 function equivalencesFromInversionBinary(invert: (s: string) => string) {
   return (n: number): number => rulesetToRule(invert(ruleToBinary(n)))

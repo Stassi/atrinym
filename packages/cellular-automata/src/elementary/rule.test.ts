@@ -1,5 +1,5 @@
 import { describe, expect, it } from '@jest/globals'
-import { type ElementaryRule, elementaryRule } from './elementary-rule.js'
+import { type ElementaryRule, elementaryRule } from './rule.js'
 
 type Domain = {
   binary: string

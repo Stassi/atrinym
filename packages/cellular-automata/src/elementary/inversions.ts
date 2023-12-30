@@ -1,6 +1,6 @@
-import { binaryToBooleans } from './octet/binary-to-booleans.js'
-import { booleansToBinary } from './octet/booleans-to-binary.js'
-import { reverse } from './sequences/reverse.js'
+import { binaryToBooleans } from '../octet/binary-to-booleans.js'
+import { booleansToBinary } from '../octet/booleans-to-binary.js'
+import { reverse } from '../sequences/reverse.js'
 
 type StringCallback = (s: string) => string
 

@@ -3,10 +3,10 @@ import {
   invertColorAndLeftRightEquivalentRule,
   invertColorEquivalentRule,
   invertLeftRightEquivalentRule,
-} from './elementary-equivalences.js'
-import { rulesetToRule } from './elementary-ruleset-to-rule.js'
-import { ruleToBinary, ruleToBooleans } from './elementary-rule-to-ruleset.js'
-import { strictEquals } from './logic/strict-equals.js'
+} from './equivalences.js'
+import { rulesetToRule } from './ruleset-to-rule.js'
+import { ruleToBinary, ruleToBooleans } from './rule-to-ruleset.js'
+import { strictEquals } from '../logic/strict-equals.js'
 
 export type ElementaryRule = {
   complement: () => number

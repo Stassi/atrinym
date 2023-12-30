@@ -1,5 +1,5 @@
 import { transcode } from 'transcoder'
-import { binaryToBooleans } from './octet/binary-to-booleans.js'
+import { binaryToBooleans } from '../octet/binary-to-booleans.js'
 
 export function ruleToBinary(n: number): string {
   return transcode(n).toBinary()
