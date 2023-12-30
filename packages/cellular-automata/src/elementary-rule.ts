@@ -69,6 +69,19 @@ export function elementaryRule(x: boolean[] | number | string): ElementaryRule {
     return elementaryRule(complementRule(decimal))
   }
 
+  function reflect(): ElementaryRule {
+    // TODO: Replace with two piped swaps [(1, 4), (3, 6)] in a new general binary index swap function (package:sequences)
+    function innerReflect(y: boolean[]): boolean[] {
+      return [y[0], y[4], y[2], y[6], y[1], y[5], y[3], y[7]] as boolean[]
+    }
+
+    const reflectRule: (n: number) => number = equivalencesFromInversionBinary(
+      binaryInversionFromBooleansInversion(innerReflect),
+    )
+
+    return elementaryRule(reflectRule(decimal))
+  }
+
   return {
     // TODO: Combine the equivalence method outputs as a static object
     complement,
@@ -76,19 +89,7 @@ export function elementaryRule(x: boolean[] | number | string): ElementaryRule {
       return complement().reflect()
     },
     decimal,
-    reflect(): ElementaryRule {
-      // TODO: Replace with two piped swaps [(1, 4), (3, 6)] in a new general binary index swap function (package:sequences)
-      function reflect(y: boolean[]): boolean[] {
-        return [y[0], y[4], y[2], y[6], y[1], y[5], y[3], y[7]] as boolean[]
-      }
-
-      const reflectRule: (n: number) => number =
-        equivalencesFromInversionBinary(
-          binaryInversionFromBooleansInversion(reflect),
-        )
-
-      return elementaryRule(reflectRule(decimal))
-    },
+    reflect,
     // TODO: Combine the symmetrical method outputs as a static object
     toBinary(): string {
       return ruleToBinary(decimal)
