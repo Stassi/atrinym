@@ -67,6 +67,7 @@ export function elementaryRule(x: boolean[] | number | string): ElementaryRule {
   }
 
   return {
+    // TODO: Combine the equivalence method outputs as a static object
     complement,
     complementAndReflect(): ElementaryRule {
       return complement().reflect()
@@ -85,6 +86,7 @@ export function elementaryRule(x: boolean[] | number | string): ElementaryRule {
       if (typeof x === 'number') return elementaryRule(reflectRule(x))
       return elementaryRule(reflectRule(rulesetToRule(x)))
     },
+    // TODO: Combine the symmetrical method outputs as a static object
     toBinary(): string {
       if (typeof x === 'number') return ruleToBinary(x)
       return ruleToBinary(rulesetToRule(x))
