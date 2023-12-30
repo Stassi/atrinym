@@ -9,6 +9,7 @@ import { strictEquals } from './logic/strict-equals.js'
 export type ElementaryRule = {
   complement: () => ElementaryRule
   complementAndReflect: () => ElementaryRule
+  decimal: number
   reflect: () => ElementaryRule
   toBinary: () => string
   toBooleans: () => boolean[]
@@ -23,7 +24,8 @@ function ruleToBooleans(n: number): boolean[] {
   return binaryToBooleans(ruleToBinary(n))
 }
 
-function rulesetToRule(x: boolean[] | string): number {
+function ruleToDecimal(x: boolean[] | number | string): number {
+  if (typeof x === 'number') return x
   return fromBinary(typeof x === 'string' ? x : booleansToBinary(x)).toNumber()
 }
 
@@ -37,7 +39,7 @@ function binaryInversionFromBooleansInversion(
 
 // TODO: Rename function
 function equivalencesFromInversionBinary(invert: (s: string) => string) {
-  return (n: number): number => rulesetToRule(invert(ruleToBinary(n)))
+  return (n: number): number => ruleToDecimal(invert(ruleToBinary(n)))
 }
 
 const strictEqualsEight: (n: number) => boolean = strictEquals(8)
@@ -48,6 +50,8 @@ export function elementaryRule(x: boolean[] | number | string): ElementaryRule {
       throw new RangeError('Decimal octet must be in range: [0, 256)')
   } else if (not(strictEqualsEight(length(x))))
     throw new RangeError('Octet length must equal 8')
+
+  const decimal: number = ruleToDecimal(x)
 
   function complement(): ElementaryRule {
     function innerComplement(z: boolean[]): boolean[] {
@@ -62,8 +66,7 @@ export function elementaryRule(x: boolean[] | number | string): ElementaryRule {
         binaryInversionFromBooleansInversion(innerComplement),
       )
 
-    if (typeof x === 'number') return elementaryRule(complementRule(x))
-    return elementaryRule(complementRule(rulesetToRule(x)))
+    return elementaryRule(complementRule(decimal))
   }
 
   return {
@@ -72,6 +75,7 @@ export function elementaryRule(x: boolean[] | number | string): ElementaryRule {
     complementAndReflect(): ElementaryRule {
       return complement().reflect()
     },
+    decimal,
     reflect(): ElementaryRule {
       // TODO: Replace with two piped swaps [(1, 4), (3, 6)] in a new general binary index swap function (package:sequences)
       function reflect(y: boolean[]): boolean[] {
@@ -83,21 +87,17 @@ export function elementaryRule(x: boolean[] | number | string): ElementaryRule {
           binaryInversionFromBooleansInversion(reflect),
         )
 
-      if (typeof x === 'number') return elementaryRule(reflectRule(x))
-      return elementaryRule(reflectRule(rulesetToRule(x)))
+      return elementaryRule(reflectRule(decimal))
     },
     // TODO: Combine the symmetrical method outputs as a static object
     toBinary(): string {
-      if (typeof x === 'number') return ruleToBinary(x)
-      return ruleToBinary(rulesetToRule(x))
+      return ruleToBinary(decimal)
     },
     toBooleans(): boolean[] {
-      if (typeof x === 'number') return ruleToBooleans(x)
-      return ruleToBooleans(rulesetToRule(x))
+      return ruleToBooleans(decimal)
     },
     toDecimal(): number {
-      if (typeof x === 'number') return x
-      return rulesetToRule(x)
+      return decimal
     },
   }
 }
