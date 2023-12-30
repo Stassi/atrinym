@@ -6,7 +6,9 @@ import { not } from './logic/not.js'
 import { reverse } from './sequences/reverse.js'
 import { strictEquals } from './logic/strict-equals.js'
 
-type NumberCallback = (n: number) => number
+type Callback<T> = (x: T) => T
+type BooleansCallback = Callback<boolean[]>
+type NumberCallback = Callback<number>
 
 export type ElementaryRule = {
   complement: () => ElementaryRule
@@ -56,9 +58,8 @@ export function elementaryRule(x: boolean[] | number | string): ElementaryRule {
   const decimal: number = ruleToDecimal(x)
 
   function complement(): ElementaryRule {
-    function complementBooleans(z: boolean[]): boolean[] {
-      return reverse(z).map(not)
-    }
+    const complementBooleans: BooleansCallback = (z: boolean[]): boolean[] =>
+      reverse(z).map(not)
 
     const complementDecimal: NumberCallback = equivalencesFromInversionBinary(
       binaryInversionFromBooleansInversion(complementBooleans),
@@ -68,10 +69,9 @@ export function elementaryRule(x: boolean[] | number | string): ElementaryRule {
   }
 
   function reflect(): ElementaryRule {
-    function reflectBooleans(y: boolean[]): boolean[] {
-      // TODO: Replace with two piped swaps [(1, 4), (3, 6)] in a new general binary index swap function (package:sequences)
-      return [y[0], y[4], y[2], y[6], y[1], y[5], y[3], y[7]] as boolean[]
-    }
+    // TODO: Replace with two piped swaps [(1, 4), (3, 6)] in a new general binary index swap function (package:sequences)
+    const reflectBooleans: BooleansCallback = (y: boolean[]): boolean[] =>
+      [y[0], y[4], y[2], y[6], y[1], y[5], y[3], y[7]] as boolean[]
 
     const reflectDecimal: NumberCallback = equivalencesFromInversionBinary(
       binaryInversionFromBooleansInversion(reflectBooleans),
