@@ -6,6 +6,8 @@ import { not } from './logic/not.js'
 import { reverse } from './sequences/reverse.js'
 import { strictEquals } from './logic/strict-equals.js'
 
+type NumberCallback = (n: number) => number
+
 export type ElementaryRule = {
   complement: () => ElementaryRule
   complementAndReflect: () => ElementaryRule
@@ -54,32 +56,28 @@ export function elementaryRule(x: boolean[] | number | string): ElementaryRule {
   const decimal: number = ruleToDecimal(x)
 
   function complement(): ElementaryRule {
-    function innerComplement(z: boolean[]): boolean[] {
-      // TODO: Rename function
+    function complementBooleans(z: boolean[]): boolean[] {
       return reverse(z).map(not)
     }
 
-    // TODO: Reduce duplication in equivalencesFromInversionBinary(binaryInversionFromBooleansInversion(...)) & simplify
+    const complementDecimal: NumberCallback = equivalencesFromInversionBinary(
+      binaryInversionFromBooleansInversion(complementBooleans),
+    )
 
-    const complementRule: (n: number) => number =
-      equivalencesFromInversionBinary(
-        binaryInversionFromBooleansInversion(innerComplement),
-      )
-
-    return elementaryRule(complementRule(decimal))
+    return elementaryRule(complementDecimal(decimal))
   }
 
   function reflect(): ElementaryRule {
-    // TODO: Replace with two piped swaps [(1, 4), (3, 6)] in a new general binary index swap function (package:sequences)
-    function innerReflect(y: boolean[]): boolean[] {
+    function reflectBooleans(y: boolean[]): boolean[] {
+      // TODO: Replace with two piped swaps [(1, 4), (3, 6)] in a new general binary index swap function (package:sequences)
       return [y[0], y[4], y[2], y[6], y[1], y[5], y[3], y[7]] as boolean[]
     }
 
-    const reflectRule: (n: number) => number = equivalencesFromInversionBinary(
-      binaryInversionFromBooleansInversion(innerReflect),
+    const reflectDecimal: NumberCallback = equivalencesFromInversionBinary(
+      binaryInversionFromBooleansInversion(reflectBooleans),
     )
 
-    return elementaryRule(reflectRule(decimal))
+    return elementaryRule(reflectDecimal(decimal))
   }
 
   return {
