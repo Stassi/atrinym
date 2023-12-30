@@ -1,5 +1,5 @@
 import { length } from 'sequences'
-import { transcode, fromBinary } from 'transcoder'
+import { fromBinary, transcode } from 'transcoder'
 import { reverse } from './sequences/reverse.js'
 import { strictEquals } from './logic/strict-equals.js'
 import { booleansToBinary } from './octet/booleans-to-binary.js'
@@ -26,15 +26,6 @@ function rulesetToRule(x: boolean[] | string): number {
   return fromBinary(typeof x === 'string' ? x : booleansToBinary(x)).toNumber()
 }
 
-function complement(x: boolean[]): boolean[] {
-  return reverse(x).map((y: boolean): boolean => !y)
-}
-
-// TODO: Replace with two piped swaps [(1, 4), (3, 6)] in a new general binary index swap function (package:sequences)
-function reflect(x: boolean[]): boolean[] {
-  return [x[0], x[4], x[2], x[6], x[1], x[5], x[3], x[7]] as boolean[]
-}
-
 function binaryInversionFromBooleansInversion(
   invertBooleans: (x: boolean[]) => boolean[],
 ) {
@@ -55,36 +46,33 @@ export function elementaryRule(x: boolean[] | number | string): ElementaryRule {
   } else if (!strictEqualsEight(length(x)))
     throw new RangeError('Octet length must equal 8')
 
-  // TODO: Reduce duplication in equivalencesFromInversionBinary(binaryInversionFromBooleansInversion(...)) & simplify
+  function innerComplement(): ElementaryRule {
+    function complement(z: boolean[]): boolean[] {
+      return reverse(z).map((y: boolean): boolean => !y)
+    }
+
+    // TODO: Reduce duplication in equivalencesFromInversionBinary(binaryInversionFromBooleansInversion(...)) & simplify
+
+    const complementRule: (n: number) => number =
+      equivalencesFromInversionBinary(
+        binaryInversionFromBooleansInversion(complement),
+      )
+
+    if (typeof x === 'number') return elementaryRule(complementRule(x))
+    return elementaryRule(complementRule(rulesetToRule(x)))
+  }
 
   return {
-    complement(): ElementaryRule {
-      const complementRule: (n: number) => number =
-        equivalencesFromInversionBinary(
-          binaryInversionFromBooleansInversion(complement),
-        )
-
-      if (typeof x === 'number') return elementaryRule(complementRule(x))
-      return elementaryRule(complementRule(rulesetToRule(x)))
-    },
+    complement: innerComplement,
     complementAndReflect(): ElementaryRule {
-      // TODO: Remove and replace with chained method calls
-
-      function complementAndReflect(y: boolean[]): boolean[] {
-        // noinspection JSSuspiciousNameCombination
-        return reflect(complement(y))
-      }
-
-      const complementAndReflectRule: (n: number) => number =
-        equivalencesFromInversionBinary(
-          binaryInversionFromBooleansInversion(complementAndReflect),
-        )
-
-      if (typeof x === 'number')
-        return elementaryRule(complementAndReflectRule(x))
-      return elementaryRule(complementAndReflectRule(rulesetToRule(x)))
+      return innerComplement().reflect()
     },
     reflect(): ElementaryRule {
+      // TODO: Replace with two piped swaps [(1, 4), (3, 6)] in a new general binary index swap function (package:sequences)
+      function reflect(y: boolean[]): boolean[] {
+        return [y[0], y[4], y[2], y[6], y[1], y[5], y[3], y[7]] as boolean[]
+      }
+
       const reflectRule: (n: number) => number =
         equivalencesFromInversionBinary(
           binaryInversionFromBooleansInversion(reflect),
