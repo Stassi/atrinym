@@ -47,9 +47,9 @@ export function elementaryRule(x: boolean[] | number | string): ElementaryRule {
   } else if (not(strictEqualsEight(length(x))))
     throw new RangeError('Octet length must equal 8')
 
-  function innerComplement(): ElementaryRule {
-    // TODO: Disambiguate naming of complement functions
-    function complement(z: boolean[]): boolean[] {
+  function complement(): ElementaryRule {
+    function innerComplement(z: boolean[]): boolean[] {
+      // TODO: Rename function
       return reverse(z).map(not)
     }
 
@@ -57,7 +57,7 @@ export function elementaryRule(x: boolean[] | number | string): ElementaryRule {
 
     const complementRule: (n: number) => number =
       equivalencesFromInversionBinary(
-        binaryInversionFromBooleansInversion(complement),
+        binaryInversionFromBooleansInversion(innerComplement),
       )
 
     if (typeof x === 'number') return elementaryRule(complementRule(x))
@@ -65,9 +65,9 @@ export function elementaryRule(x: boolean[] | number | string): ElementaryRule {
   }
 
   return {
-    complement: innerComplement,
+    complement,
     complementAndReflect(): ElementaryRule {
-      return innerComplement().reflect()
+      return complement().reflect()
     },
     reflect(): ElementaryRule {
       // TODO: Replace with two piped swaps [(1, 4), (3, 6)] in a new general binary index swap function (package:sequences)
