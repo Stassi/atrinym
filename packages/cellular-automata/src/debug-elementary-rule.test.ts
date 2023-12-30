@@ -4,6 +4,15 @@ import {
   debugElementaryRule,
 } from './debug-elementary-rule.js'
 
+type Domain = {
+  binary: string
+  booleans: boolean[]
+  complemented: number
+  complementedAndReflected: number
+  decimal: number
+  reflected: number
+}
+
 // TODO: Replace predecessor
 
 describe('[DEBUG] elementaryRule(...)', (): void => {
@@ -11,61 +20,86 @@ describe('[DEBUG] elementaryRule(...)', (): void => {
     {
       binary: '00000000',
       booleans: [false, false, false, false, false, false, false, false],
+      complemented: 255,
+      complementedAndReflected: 255,
       decimal: 0,
+      reflected: 0,
     },
     {
       binary: '00011110',
       booleans: [false, false, false, true, true, true, true, false],
+      complemented: 135,
+      complementedAndReflected: 149,
       decimal: 30,
+      reflected: 86,
     },
     {
       binary: '01101110',
       booleans: [false, true, true, false, true, true, true, false],
+      complemented: 137,
+      complementedAndReflected: 193,
       decimal: 110,
+      reflected: 124,
     },
     {
       binary: '11111111',
       booleans: [true, true, true, true, true, true, true, true],
+      complemented: 0,
+      complementedAndReflected: 0,
       decimal: 255,
+      reflected: 255,
     },
-  ])(
-    'rule: $decimal',
-    (domain: {
-      binary: string
-      booleans: boolean[]
-      decimal: number
-    }): void => {
-      describe.each(Object.keys(domain))('from %s', (key: string): void => {
-        const {
-            binary,
-            booleans,
-            decimal,
-          }: {
-            binary: string
-            booleans: boolean[]
-            decimal: number
-          } = domain,
-          { toBinary, toBooleans, toDecimal }: DebugElementaryRule =
-            debugElementaryRule(
-              // @ts-expect-error -- keys are valid indices
-              // eslint-disable-next-line @typescript-eslint/no-unsafe-argument -- keys are valid indices
-              domain[key],
-            )
+  ])('rule: $decimal', (domain: Domain): void => {
+    describe.each(['binary', 'booleans', 'decimal'])(
+      'from %s',
+      (key: string): void => {
+        const rule: DebugElementaryRule = debugElementaryRule(
+          // @ts-expect-error -- keys are valid indices
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-argument -- keys are valid indices
+          domain[key],
+        )
 
-        it('should return its elementary rule as binary', (): void => {
-          expect(toBinary()).toBe(binary)
+        describe('symmetries', (): void => {
+          const { toBinary, toBooleans, toDecimal }: DebugElementaryRule = rule,
+            { binary, booleans, decimal }: Domain = domain
+
+          it('should return its elementary rule as binary', (): void => {
+            expect(toBinary()).toBe(binary)
+          })
+
+          it('should return its elementary rule as booleans', (): void => {
+            expect(toBooleans()).toStrictEqual(booleans)
+          })
+
+          it('should return its elementary rule as decimal', (): void => {
+            expect(toDecimal()).toBe(decimal)
+          })
         })
 
-        it('should return its elementary rule as booleans', (): void => {
-          expect(toBooleans()).toStrictEqual(booleans)
-        })
+        describe('equivalences', (): void => {
+          const {
+              complement,
+              complementAndReflect,
+              reflect,
+            }: DebugElementaryRule = rule,
+            { complemented, complementedAndReflected, reflected }: Domain =
+              domain
 
-        it('should return its elementary rule as decimal', (): void => {
-          expect(toDecimal()).toBe(decimal)
+          it('should return its complementary elementary rule as decimal', (): void => {
+            expect(complement()).toBe(complemented)
+          })
+
+          it('should return its reflected elementary rule as decimal', (): void => {
+            expect(reflect()).toBe(reflected)
+          })
+
+          it('should return its complementary and reflected elementary rule as decimal', (): void => {
+            expect(complementAndReflect()).toBe(complementedAndReflected)
+          })
         })
-      })
-    },
-  )
+      },
+    )
+  })
 
   describe.each([-500, -1, 256, 500])(
     'rule: %p (invalid octet range)',
