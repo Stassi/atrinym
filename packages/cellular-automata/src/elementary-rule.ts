@@ -47,6 +47,7 @@ export function elementaryRule(x: boolean[] | number | string): ElementaryRule {
     throw new RangeError('Octet length must equal 8')
 
   function innerComplement(): ElementaryRule {
+    // TODO: Disambiguate naming of complement functions
     function complement(z: boolean[]): boolean[] {
       return reverse(z).map((y: boolean): boolean => !y)
     }
