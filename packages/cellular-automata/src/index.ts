@@ -1,1 +1,1 @@
-export * from './elementary/rule.js'
+export * from './elementary-rule.js'

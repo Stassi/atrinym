@@ -1,9 +1,9 @@
 import { length } from 'sequences'
 import { transcode, fromBinary } from 'transcoder'
-import { reverse } from '../sequences/reverse.js'
-import { strictEquals } from '../logic/strict-equals.js'
-import { booleansToBinary } from '../octet/booleans-to-binary.js'
-import { binaryToBooleans } from '../octet/binary-to-booleans.js'
+import { reverse } from './sequences/reverse.js'
+import { strictEquals } from './logic/strict-equals.js'
+import { booleansToBinary } from './octet/booleans-to-binary.js'
+import { binaryToBooleans } from './octet/binary-to-booleans.js'
 
 export type ElementaryRule = {
   complement: () => number
