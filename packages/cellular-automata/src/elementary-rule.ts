@@ -2,6 +2,7 @@ import { length } from 'sequences'
 import { fromBinary, transcode } from 'transcoder'
 import { binaryToBooleans } from './octet/binary-to-booleans.js'
 import { booleansToBinary } from './octet/booleans-to-binary.js'
+import { not } from './logic/not.js'
 import { reverse } from './sequences/reverse.js'
 import { strictEquals } from './logic/strict-equals.js'
 
@@ -43,13 +44,13 @@ export function elementaryRule(x: boolean[] | number | string): ElementaryRule {
   if (typeof x === 'number') {
     if (x < 0 || x > 255)
       throw new RangeError('Decimal octet must be in range: [0, 256)')
-  } else if (!strictEqualsEight(length(x)))
+  } else if (not(strictEqualsEight(length(x))))
     throw new RangeError('Octet length must equal 8')
 
   function innerComplement(): ElementaryRule {
     // TODO: Disambiguate naming of complement functions
     function complement(z: boolean[]): boolean[] {
-      return reverse(z).map((y: boolean): boolean => !y)
+      return reverse(z).map(not)
     }
 
     // TODO: Reduce duplication in equivalencesFromInversionBinary(binaryInversionFromBooleansInversion(...)) & simplify
