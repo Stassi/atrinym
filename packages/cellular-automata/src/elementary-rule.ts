@@ -77,10 +77,7 @@ const reflect: NumberCallback = equivalencesFromInversionBinary(
   binaryInversionFromBooleansInversion(reflectBooleans),
 )
 
-// TODO: conduit:pipe
-function complementAndReflect(n: number): number {
-  return reflect(complement(n))
-}
+const complementAndReflect: NumberCallback = pipe(complement, reflect)
 
 export const elementaryRule: (x: ElementaryRuleParam) => ElementaryRule = pipe(
   validateDomain,
