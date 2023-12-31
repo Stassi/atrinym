@@ -85,15 +85,17 @@ describe('elementaryRule(...)', (): void => {
               domain
 
           it('should return its complementary elementary rule as decimal', (): void => {
-            expect(asComplemented).toBe(complemented)
+            expect(asComplemented.decimal).toBe(complemented)
           })
 
           it('should return its reflected elementary rule as decimal', (): void => {
-            expect(asReflected).toBe(reflected)
+            expect(asReflected.decimal).toBe(reflected)
           })
 
           it('should return its complementary and reflected elementary rule as decimal', (): void => {
-            expect(asComplementedAndReflected).toBe(complementedAndReflected)
+            expect(asComplementedAndReflected.decimal).toBe(
+              complementedAndReflected,
+            )
           })
         })
       },
