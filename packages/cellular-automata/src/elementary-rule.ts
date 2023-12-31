@@ -13,10 +13,10 @@ type NumberCallback = Callback<number>
 export type ElementaryRule = {
   binary: string
   booleans: boolean[]
-  complement: () => ElementaryRule
-  complementAndReflect: () => ElementaryRule
+  complement: () => number
+  complementAndReflect: () => number
   decimal: number
-  reflect: () => ElementaryRule
+  reflect: () => number
 }
 
 function decimalToBinary(n: number): string {
@@ -58,7 +58,7 @@ export function elementaryRule(x: boolean[] | number | string): ElementaryRule {
     binary: string = decimalToBinary(decimal),
     booleans: boolean[] = decimalToBooleans(decimal)
 
-  function complement(): ElementaryRule {
+  function complement(): number {
     const complementBooleans: BooleansCallback = (z: boolean[]): boolean[] =>
       reverse(z).map(not)
 
@@ -66,10 +66,10 @@ export function elementaryRule(x: boolean[] | number | string): ElementaryRule {
       binaryInversionFromBooleansInversion(complementBooleans),
     )
 
-    return elementaryRule(complementDecimal(decimal))
+    return complementDecimal(decimal)
   }
 
-  function reflect(): ElementaryRule {
+  function reflect(): number {
     // TODO: Replace with two piped swaps [(1, 4), (3, 6)] in a new general binary index swap function (package:sequences)
     const reflectBooleans: BooleansCallback = (y: boolean[]): boolean[] =>
       [y[0], y[4], y[2], y[6], y[1], y[5], y[3], y[7]] as boolean[]
@@ -78,7 +78,7 @@ export function elementaryRule(x: boolean[] | number | string): ElementaryRule {
       binaryInversionFromBooleansInversion(reflectBooleans),
     )
 
-    return elementaryRule(reflectDecimal(decimal))
+    return reflectDecimal(decimal)
   }
 
   return {
@@ -86,8 +86,8 @@ export function elementaryRule(x: boolean[] | number | string): ElementaryRule {
     booleans,
     // TODO: Combine the equivalence method outputs as a static object
     complement,
-    complementAndReflect(): ElementaryRule {
-      return complement().reflect()
+    complementAndReflect(): number {
+      return elementaryRule(complement()).reflect()
     },
     decimal,
     reflect,
