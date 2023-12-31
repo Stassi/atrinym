@@ -1,3 +1,5 @@
+// TODO: Prefer native utility invariants
+import { applySpec, identity, pipe } from 'ramda-typed'
 import { length } from 'sequences'
 import { fromBinary, transcode } from 'transcoder'
 import { binaryToBooleans } from './octet/binary-to-booleans.js'
@@ -8,6 +10,8 @@ import { strictEquals } from './logic/strict-equals.js'
 
 type NumberCallback = (x: number) => number
 
+type ElementaryRuleParam = boolean[] | number | string
+
 export type ElementaryRule = {
   binary: string
   booleans: boolean[]
@@ -15,6 +19,17 @@ export type ElementaryRule = {
   complementedAndReflected: number
   decimal: number
   reflected: number
+}
+
+const strictEqualsEight: (n: number) => boolean = strictEquals(8)
+
+function validateDomain(x: ElementaryRuleParam): ElementaryRuleParam {
+  if (typeof x === 'number') {
+    if (x < 0 || x > 255)
+      throw new RangeError('Decimal octet must be in range: [0, 256)')
+  } else if (not(strictEqualsEight(length(x))))
+    throw new RangeError('Octet length must equal 8')
+  return x
 }
 
 function decimalToBinary(n: number): string {
@@ -25,7 +40,7 @@ function decimalToBooleans(n: number): boolean[] {
   return binaryToBooleans(decimalToBinary(n))
 }
 
-function ruleToDecimal(x: boolean[] | number | string): number {
+function ruleToDecimal(x: ElementaryRuleParam): number {
   if (typeof x === 'number') return x
   return fromBinary(typeof x === 'string' ? x : booleansToBinary(x)).toNumber()
 }
@@ -67,25 +82,16 @@ function complementAndReflect(n: number): number {
   return reflect(complement(n))
 }
 
-const strictEqualsEight: (n: number) => boolean = strictEquals(8)
-
-export function elementaryRule(x: boolean[] | number | string): ElementaryRule {
-  if (typeof x === 'number') {
-    if (x < 0 || x > 255)
-      throw new RangeError('Decimal octet must be in range: [0, 256)')
-  } else if (not(strictEqualsEight(length(x))))
-    throw new RangeError('Octet length must equal 8')
-
-  const decimal: number = ruleToDecimal(x)
-
-  // TODO: `applySpec` w/`identity`
+export const elementaryRule: (x: ElementaryRuleParam) => ElementaryRule = pipe(
+  validateDomain,
+  ruleToDecimal,
   // TODO: Decouple equivalences as new object, spread result
-  return {
-    binary: decimalToBinary(decimal),
-    booleans: decimalToBooleans(decimal),
-    complemented: complement(decimal),
-    complementedAndReflected: complementAndReflect(decimal),
-    decimal,
-    reflected: reflect(decimal),
-  }
-}
+  applySpec({
+    binary: decimalToBinary,
+    booleans: decimalToBooleans,
+    complemented: complement,
+    complementedAndReflected: complementAndReflect,
+    decimal: identity,
+    reflected: reflect,
+  }),
+)
