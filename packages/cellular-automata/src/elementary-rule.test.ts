@@ -1,5 +1,7 @@
 import { describe, expect, it } from '@jest/globals'
 import { type ElementaryRule, elementaryRule } from './elementary-rule.js'
+import { type ElementaryRuleEquivalences } from './elementary-rule-equivalences.js'
+import { type ElementaryRuleSymmetries } from './elementary-rule-symmetries.js'
 
 type Domain = {
   binary: string
@@ -48,7 +50,7 @@ describe('elementaryRule(...)', (): void => {
     describe.each(['binary', 'booleans', 'decimal'])(
       'from %s',
       (key: string): void => {
-        const rule: ElementaryRule = elementaryRule(
+        const { equivalences, ...symmetries }: ElementaryRule = elementaryRule(
           // @ts-expect-error -- keys are valid indices
           // eslint-disable-next-line @typescript-eslint/no-unsafe-argument -- keys are valid indices
           domain[key],
@@ -59,7 +61,7 @@ describe('elementaryRule(...)', (): void => {
               binary: asBinary,
               booleans: asBooleans,
               decimal: asDecimal,
-            }: ElementaryRule = rule,
+            }: ElementaryRuleSymmetries = symmetries,
             { binary, booleans, decimal }: Domain = domain
 
           it('should return its elementary rule as binary', (): void => {
@@ -77,25 +79,23 @@ describe('elementaryRule(...)', (): void => {
 
         describe('equivalences', (): void => {
           const {
-              complemented: asComplemented,
-              complementedAndReflected: asComplementedAndReflected,
-              reflected: asReflected,
-            }: ElementaryRule = rule,
+              complemented: { decimal: asComplemented },
+              complementedAndReflected: { decimal: asComplementedAndReflected },
+              reflected: { decimal: asReflected },
+            }: ElementaryRuleEquivalences = equivalences,
             { complemented, complementedAndReflected, reflected }: Domain =
               domain
 
           it('should return its complementary elementary rule as decimal', (): void => {
-            expect(asComplemented.decimal).toBe(complemented)
+            expect(asComplemented).toBe(complemented)
           })
 
           it('should return its reflected elementary rule as decimal', (): void => {
-            expect(asReflected.decimal).toBe(reflected)
+            expect(asReflected).toBe(reflected)
           })
 
           it('should return its complementary and reflected elementary rule as decimal', (): void => {
-            expect(asComplementedAndReflected.decimal).toBe(
-              complementedAndReflected,
-            )
+            expect(asComplementedAndReflected).toBe(complementedAndReflected)
           })
         })
       },
