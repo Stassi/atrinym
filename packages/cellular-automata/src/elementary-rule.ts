@@ -17,9 +17,6 @@ export type ElementaryRule = {
   complementAndReflect: () => ElementaryRule
   decimal: number
   reflect: () => ElementaryRule
-  toBinary: () => string
-  toBooleans: () => boolean[]
-  toDecimal: () => number
 }
 
 function ruleToBinary(n: number): string {
@@ -111,8 +108,5 @@ export function elementaryRule(x: boolean[] | number | string): ElementaryRule {
     },
     decimal,
     reflect,
-    toBinary,
-    toBooleans,
-    toDecimal,
   }
 }
