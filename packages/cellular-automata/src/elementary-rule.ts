@@ -13,10 +13,10 @@ type NumberCallback = Callback<number>
 export type ElementaryRule = {
   binary: string
   booleans: boolean[]
-  complement: () => number
-  complementAndReflect: () => number
+  complemented: number
+  complementedAndReflected: number
   decimal: number
-  reflect: () => number
+  reflected: number
 }
 
 function decimalToBinary(n: number): string {
@@ -45,6 +45,35 @@ function equivalencesFromInversionBinary(invert: (s: string) => string) {
   return (n: number): number => ruleToDecimal(invert(decimalToBinary(n)))
 }
 
+function complement(n: number): number {
+  const complementBooleans: BooleansCallback = (z: boolean[]): boolean[] =>
+    reverse(z).map(not)
+
+  const complementDecimal: NumberCallback = equivalencesFromInversionBinary(
+    binaryInversionFromBooleansInversion(complementBooleans),
+  )
+
+  return complementDecimal(n)
+}
+
+// TODO: Simplify & reduce duplication between equivalence transformations
+
+function reflect(n: number): number {
+  // TODO: Replace with two piped swaps [(1, 4), (3, 6)] in a new general binary index swap function (package:sequences)
+  const reflectBooleans: BooleansCallback = (y: boolean[]): boolean[] =>
+    [y[0], y[4], y[2], y[6], y[1], y[5], y[3], y[7]] as boolean[]
+
+  const reflectDecimal: NumberCallback = equivalencesFromInversionBinary(
+    binaryInversionFromBooleansInversion(reflectBooleans),
+  )
+
+  return reflectDecimal(n)
+}
+
+function complementAndReflect(n: number): number {
+  return reflect(complement(n))
+}
+
 const strictEqualsEight: (n: number) => boolean = strictEquals(8)
 
 export function elementaryRule(x: boolean[] | number | string): ElementaryRule {
@@ -54,42 +83,15 @@ export function elementaryRule(x: boolean[] | number | string): ElementaryRule {
   } else if (not(strictEqualsEight(length(x))))
     throw new RangeError('Octet length must equal 8')
 
-  const decimal: number = ruleToDecimal(x),
-    binary: string = decimalToBinary(decimal),
-    booleans: boolean[] = decimalToBooleans(decimal)
+  const decimal: number = ruleToDecimal(x)
 
-  function complement(): number {
-    const complementBooleans: BooleansCallback = (z: boolean[]): boolean[] =>
-      reverse(z).map(not)
-
-    const complementDecimal: NumberCallback = equivalencesFromInversionBinary(
-      binaryInversionFromBooleansInversion(complementBooleans),
-    )
-
-    return complementDecimal(decimal)
-  }
-
-  function reflect(): number {
-    // TODO: Replace with two piped swaps [(1, 4), (3, 6)] in a new general binary index swap function (package:sequences)
-    const reflectBooleans: BooleansCallback = (y: boolean[]): boolean[] =>
-      [y[0], y[4], y[2], y[6], y[1], y[5], y[3], y[7]] as boolean[]
-
-    const reflectDecimal: NumberCallback = equivalencesFromInversionBinary(
-      binaryInversionFromBooleansInversion(reflectBooleans),
-    )
-
-    return reflectDecimal(decimal)
-  }
-
+  // TODO: `applySpec` w/`identity`
   return {
-    binary,
-    booleans,
-    // TODO: Combine the equivalence method outputs as a static object
-    complement,
-    complementAndReflect(): number {
-      return elementaryRule(complement()).reflect()
-    },
+    binary: decimalToBinary(decimal),
+    booleans: decimalToBooleans(decimal),
+    complemented: complement(decimal),
+    complementedAndReflected: complementAndReflect(decimal),
     decimal,
-    reflect,
+    reflected: reflect(decimal),
   }
 }
