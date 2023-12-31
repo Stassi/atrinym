@@ -76,21 +76,24 @@ describe('elementaryRule(...)', (): void => {
         })
 
         describe('equivalences', (): void => {
-          const { complement, complementAndReflect, reflect }: ElementaryRule =
-              rule,
+          const {
+              complemented: asComplemented,
+              complementedAndReflected: asComplementedAndReflected,
+              reflected: asReflected,
+            }: ElementaryRule = rule,
             { complemented, complementedAndReflected, reflected }: Domain =
               domain
 
           it('should return its complementary elementary rule as decimal', (): void => {
-            expect(complement()).toBe(complemented)
+            expect(asComplemented).toBe(complemented)
           })
 
           it('should return its reflected elementary rule as decimal', (): void => {
-            expect(reflect()).toBe(reflected)
+            expect(asReflected).toBe(reflected)
           })
 
           it('should return its complementary and reflected elementary rule as decimal', (): void => {
-            expect(complementAndReflect()).toBe(complementedAndReflected)
+            expect(asComplementedAndReflected).toBe(complementedAndReflected)
           })
         })
       },
