@@ -19,12 +19,12 @@ export type ElementaryRule = {
   reflect: () => ElementaryRule
 }
 
-function ruleToBinary(n: number): string {
+function decimalToBinary(n: number): string {
   return transcode(n).toBinary()
 }
 
-function ruleToBooleans(n: number): boolean[] {
-  return binaryToBooleans(ruleToBinary(n))
+function decimalToBooleans(n: number): boolean[] {
+  return binaryToBooleans(decimalToBinary(n))
 }
 
 function ruleToDecimal(x: boolean[] | number | string): number {
@@ -42,7 +42,7 @@ function binaryInversionFromBooleansInversion(
 
 // TODO: Rename function
 function equivalencesFromInversionBinary(invert: (s: string) => string) {
-  return (n: number): number => ruleToDecimal(invert(ruleToBinary(n)))
+  return (n: number): number => ruleToDecimal(invert(decimalToBinary(n)))
 }
 
 const strictEqualsEight: (n: number) => boolean = strictEquals(8)
@@ -55,8 +55,8 @@ export function elementaryRule(x: boolean[] | number | string): ElementaryRule {
     throw new RangeError('Octet length must equal 8')
 
   const decimal: number = ruleToDecimal(x),
-    binary: string = ruleToBinary(decimal),
-    booleans: boolean[] = ruleToBooleans(decimal)
+    binary: string = decimalToBinary(decimal),
+    booleans: boolean[] = decimalToBooleans(decimal)
 
   function complement(): ElementaryRule {
     const complementBooleans: BooleansCallback = (z: boolean[]): boolean[] =>
