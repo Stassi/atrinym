@@ -8,7 +8,10 @@ import { not } from './logic/not.js'
 import { reverse } from './sequences/reverse.js'
 import { strictEquals } from './logic/strict-equals.js'
 
-type NumberCallback = (x: number) => number
+type BinaryCallback<T> = (x: T) => T
+type BooleansCallback = BinaryCallback<boolean[]>
+type NumberCallback = BinaryCallback<number>
+type StringCallback = BinaryCallback<string>
 
 type ElementaryRuleParam = boolean[] | number | string
 
@@ -47,15 +50,16 @@ function ruleToDecimal(x: ElementaryRuleParam): number {
 
 // TODO: Rename function
 function binaryInversionFromBooleansInversion(
-  invertBooleans: (x: boolean[]) => boolean[],
-) {
-  return (s: string): string =>
-    booleansToBinary(invertBooleans(binaryToBooleans(s)))
+  invertBooleans: BooleansCallback,
+): StringCallback {
+  return pipe(binaryToBooleans, invertBooleans, booleansToBinary)
 }
 
 // TODO: Rename function
-function equivalencesFromInversionBinary(invert: (s: string) => string) {
-  return (n: number): number => ruleToDecimal(invert(decimalToBinary(n)))
+function equivalencesFromInversionBinary(
+  invertBinary: StringCallback,
+): NumberCallback {
+  return pipe(decimalToBinary, invertBinary, ruleToDecimal)
 }
 
 function complementBooleans(x: boolean[]): boolean[] {
