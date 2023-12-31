@@ -1,12 +1,12 @@
 // TODO: Prefer native utility invariants
 import { pipe } from 'ramda-typed'
-import { not } from './logic/not.js'
-import { reverse } from './sequences/reverse.js'
+import { not } from '../logic/not.js'
+import { reverse } from '../sequences/reverse.js'
 import {
   type ElementaryRuleSymmetries,
   type ElementaryRuleSymmetriesParam,
   elementaryRuleSymmetries,
-} from './elementary-rule-symmetries.js'
+} from './symmetries.js'
 
 export type ElementaryRuleEquivalences = Record<
   'complemented' | 'complementedAndReflected' | 'reflected',

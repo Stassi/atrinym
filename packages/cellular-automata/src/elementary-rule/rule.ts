@@ -1,12 +1,12 @@
 import {
   elementaryRuleEquivalences,
   type ElementaryRuleEquivalences,
-} from './elementary-rule-equivalences.js'
+} from './equivalences.js'
 import {
   elementaryRuleSymmetries,
   type ElementaryRuleSymmetries,
   type ElementaryRuleSymmetriesParam,
-} from './elementary-rule-symmetries.js'
+} from './symmetries.js'
 
 export type ElementaryRule = ElementaryRuleSymmetries & {
   equivalences: ElementaryRuleEquivalences

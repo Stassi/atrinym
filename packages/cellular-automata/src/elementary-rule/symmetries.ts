@@ -2,10 +2,10 @@
 import { applySpec, identity, pipe } from 'ramda-typed'
 import { length } from 'sequences'
 import { fromBinary, transcode } from 'transcoder'
-import { binaryToBooleans } from './octet/binary-to-booleans.js'
-import { booleansToBinary } from './octet/booleans-to-binary.js'
-import { not } from './logic/not.js'
-import { strictEquals } from './logic/strict-equals.js'
+import { binaryToBooleans } from '../octet/binary-to-booleans.js'
+import { booleansToBinary } from '../octet/booleans-to-binary.js'
+import { not } from '../logic/not.js'
+import { strictEquals } from '../logic/strict-equals.js'
 
 export type ElementaryRuleSymmetriesParam = boolean[] | number | string
 
