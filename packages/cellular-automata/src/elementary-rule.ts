@@ -6,9 +6,7 @@ import { not } from './logic/not.js'
 import { reverse } from './sequences/reverse.js'
 import { strictEquals } from './logic/strict-equals.js'
 
-type Callback<T> = (x: T) => T
-type BooleansCallback = Callback<boolean[]>
-type NumberCallback = Callback<number>
+type NumberCallback = (x: number) => number
 
 export type ElementaryRule = {
   binary: string
@@ -45,31 +43,26 @@ function equivalencesFromInversionBinary(invert: (s: string) => string) {
   return (n: number): number => ruleToDecimal(invert(decimalToBinary(n)))
 }
 
-function complement(n: number): number {
-  const complementBooleans: BooleansCallback = (x: boolean[]): boolean[] =>
-    reverse(x).map(not)
+function complementBooleans(x: boolean[]): boolean[] {
+  return reverse(x).map(not)
+}
 
-  const complementDecimal: NumberCallback = equivalencesFromInversionBinary(
-    binaryInversionFromBooleansInversion(complementBooleans),
-  )
-
-  return complementDecimal(n)
+// TODO: Replace with two piped swaps [(1, 4), (3, 6)] in a new general binary index swap function (package:sequences)
+function reflectBooleans(x: boolean[]): boolean[] {
+  return [x[0], x[4], x[2], x[6], x[1], x[5], x[3], x[7]] as boolean[]
 }
 
 // TODO: Simplify & reduce duplication between equivalence transformations
+const complement: NumberCallback = equivalencesFromInversionBinary(
+  binaryInversionFromBooleansInversion(complementBooleans),
+)
 
-function reflect(n: number): number {
-  // TODO: Replace with two piped swaps [(1, 4), (3, 6)] in a new general binary index swap function (package:sequences)
-  const reflectBooleans: BooleansCallback = (x: boolean[]): boolean[] =>
-    [x[0], x[4], x[2], x[6], x[1], x[5], x[3], x[7]] as boolean[]
+// TODO: Simplify & reduce duplication between equivalence transformations
+const reflect: NumberCallback = equivalencesFromInversionBinary(
+  binaryInversionFromBooleansInversion(reflectBooleans),
+)
 
-  const reflectDecimal: NumberCallback = equivalencesFromInversionBinary(
-    binaryInversionFromBooleansInversion(reflectBooleans),
-  )
-
-  return reflectDecimal(n)
-}
-
+// TODO: conduit:pipe
 function complementAndReflect(n: number): number {
   return reflect(complement(n))
 }
@@ -86,6 +79,7 @@ export function elementaryRule(x: boolean[] | number | string): ElementaryRule {
   const decimal: number = ruleToDecimal(x)
 
   // TODO: `applySpec` w/`identity`
+  // TODO: Decouple equivalences as new object, spread result
   return {
     binary: decimalToBinary(decimal),
     booleans: decimalToBooleans(decimal),
