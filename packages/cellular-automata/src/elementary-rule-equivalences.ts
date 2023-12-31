@@ -8,11 +8,10 @@ import {
   elementaryRuleSymmetries,
 } from './elementary-rule-symmetries.js'
 
-export type ElementaryRuleEquivalences = {
-  complemented: ElementaryRuleSymmetries
-  complementedAndReflected: ElementaryRuleSymmetries
-  reflected: ElementaryRuleSymmetries
-}
+export type ElementaryRuleEquivalences = Record<
+  'complemented' | 'complementedAndReflected' | 'reflected',
+  ElementaryRuleSymmetries
+>
 
 function complement(x: boolean[]): boolean[] {
   return reverse(x).map(not)
