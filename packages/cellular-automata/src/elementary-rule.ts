@@ -8,8 +8,9 @@ import {
   type ElementaryRuleSymmetriesParam,
 } from './elementary-rule-symmetries.js'
 
-export type ElementaryRule = ElementaryRuleEquivalences &
-  ElementaryRuleSymmetries
+export type ElementaryRule = ElementaryRuleSymmetries & {
+  equivalences: ElementaryRuleEquivalences
+}
 
 export function elementaryRule(
   x: ElementaryRuleSymmetriesParam,
@@ -18,7 +19,6 @@ export function elementaryRule(
 
   return {
     ...symmetries,
-    // TODO: Accept ElementaryRuleSymmetries as parameter type (omit `.decimal` property)
-    ...elementaryRuleEquivalences(symmetries.decimal),
+    equivalences: elementaryRuleEquivalences(symmetries.decimal),
   }
 }
