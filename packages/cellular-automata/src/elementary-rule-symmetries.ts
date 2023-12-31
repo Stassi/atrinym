@@ -7,7 +7,7 @@ import { booleansToBinary } from './octet/booleans-to-binary.js'
 import { not } from './logic/not.js'
 import { strictEquals } from './logic/strict-equals.js'
 
-type ElementaryRuleSymmetriesParam = boolean[] | number | string
+export type ElementaryRuleSymmetriesParam = boolean[] | number | string
 
 export type ElementaryRuleSymmetries = {
   binary: string
