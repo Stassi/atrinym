@@ -46,8 +46,8 @@ function equivalencesFromInversionBinary(invert: (s: string) => string) {
 }
 
 function complement(n: number): number {
-  const complementBooleans: BooleansCallback = (z: boolean[]): boolean[] =>
-    reverse(z).map(not)
+  const complementBooleans: BooleansCallback = (x: boolean[]): boolean[] =>
+    reverse(x).map(not)
 
   const complementDecimal: NumberCallback = equivalencesFromInversionBinary(
     binaryInversionFromBooleansInversion(complementBooleans),
@@ -60,8 +60,8 @@ function complement(n: number): number {
 
 function reflect(n: number): number {
   // TODO: Replace with two piped swaps [(1, 4), (3, 6)] in a new general binary index swap function (package:sequences)
-  const reflectBooleans: BooleansCallback = (y: boolean[]): boolean[] =>
-    [y[0], y[4], y[2], y[6], y[1], y[5], y[3], y[7]] as boolean[]
+  const reflectBooleans: BooleansCallback = (x: boolean[]): boolean[] =>
+    [x[0], x[4], x[2], x[6], x[1], x[5], x[3], x[7]] as boolean[]
 
   const reflectDecimal: NumberCallback = equivalencesFromInversionBinary(
     binaryInversionFromBooleansInversion(reflectBooleans),
