@@ -160,6 +160,9 @@ importers:
       jest-resolve:
         specifier: ^29.7.0
         version: 29.7.0
+      ramda-typed:
+        specifier: workspace:*
+        version: link:../ramda-typed
       rollup:
         specifier: ^4.9.1
         version: 4.9.1
