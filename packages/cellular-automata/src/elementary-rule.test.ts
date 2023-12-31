@@ -55,19 +55,23 @@ describe('elementaryRule(...)', (): void => {
         )
 
         describe('symmetries', (): void => {
-          const { toBinary, toBooleans, toDecimal }: ElementaryRule = rule,
+          const {
+              binary: asBinary,
+              booleans: asBooleans,
+              decimal: asDecimal,
+            }: ElementaryRule = rule,
             { binary, booleans, decimal }: Domain = domain
 
           it('should return its elementary rule as binary', (): void => {
-            expect(toBinary()).toBe(binary)
+            expect(asBinary).toBe(binary)
           })
 
           it('should return its elementary rule as booleans', (): void => {
-            expect(toBooleans()).toStrictEqual(booleans)
+            expect(asBooleans).toStrictEqual(booleans)
           })
 
           it('should return its elementary rule as decimal', (): void => {
-            expect(toDecimal()).toBe(decimal)
+            expect(asDecimal).toBe(decimal)
           })
         })
 
@@ -78,15 +82,15 @@ describe('elementaryRule(...)', (): void => {
               domain
 
           it('should return its complementary elementary rule as decimal', (): void => {
-            expect(complement().toDecimal()).toBe(complemented)
+            expect(complement().decimal).toBe(complemented)
           })
 
           it('should return its reflected elementary rule as decimal', (): void => {
-            expect(reflect().toDecimal()).toBe(reflected)
+            expect(reflect().decimal).toBe(reflected)
           })
 
           it('should return its complementary and reflected elementary rule as decimal', (): void => {
-            expect(complementAndReflect().toDecimal()).toBe(
+            expect(complementAndReflect().decimal).toBe(
               complementedAndReflected,
             )
           })
