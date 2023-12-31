@@ -54,26 +54,9 @@ export function elementaryRule(x: boolean[] | number | string): ElementaryRule {
   } else if (not(strictEqualsEight(length(x))))
     throw new RangeError('Octet length must equal 8')
 
-  // TODO: Remove
-  function toDecimal(): number {
-    return ruleToDecimal(x)
-  }
-
-  const decimal: number = toDecimal()
-
-  // TODO: Remove
-  function toBinary(): string {
-    return ruleToBinary(decimal)
-  }
-
-  const binary: string = toBinary()
-
-  // TODO: Remove
-  function toBooleans(): boolean[] {
-    return ruleToBooleans(decimal)
-  }
-
-  const booleans: boolean[] = toBooleans()
+  const decimal: number = ruleToDecimal(x),
+    binary: string = ruleToBinary(decimal),
+    booleans: boolean[] = ruleToBooleans(decimal)
 
   function complement(): ElementaryRule {
     const complementBooleans: BooleansCallback = (z: boolean[]): boolean[] =>
