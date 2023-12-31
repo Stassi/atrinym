@@ -1,5 +1,5 @@
 // TODO: Prefer native utility invariants
-import { pipe } from 'ramda-typed'
+import { applySpec, map, pipe, prop } from 'ramda-typed'
 import { not } from '../logic/not.js'
 import { reverse } from '../sequences/reverse.js'
 import {
@@ -22,21 +22,20 @@ function reflect(x: boolean[]): boolean[] {
   return [x[0], x[4], x[2], x[6], x[1], x[5], x[3], x[7]] as boolean[]
 }
 
-const complementAndReflectBooleans: (x: boolean[]) => boolean[] = pipe(
-  complement,
-  reflect,
+const equivalences: (x: boolean[]) => ElementaryRuleEquivalences = pipe(
+  // @ts-expect-error -- valid type
+  applySpec({
+    complemented: complement,
+    complementedAndReflected: pipe(complement, reflect),
+    reflected: reflect,
+  }),
+  map(elementaryRuleSymmetries),
 )
 
-export function elementaryRuleEquivalences(
+export const elementaryRuleEquivalences: (
   x: ElementaryRuleSymmetriesParam,
-): ElementaryRuleEquivalences {
-  const { booleans }: ElementaryRuleSymmetries = elementaryRuleSymmetries(x)
-
-  return {
-    complemented: elementaryRuleSymmetries(complement(booleans)),
-    complementedAndReflected: elementaryRuleSymmetries(
-      complementAndReflectBooleans(booleans),
-    ),
-    reflected: elementaryRuleSymmetries(reflect(booleans)),
-  }
-}
+) => ElementaryRuleEquivalences = pipe(
+  elementaryRuleSymmetries,
+  prop('booleans'),
+  equivalences,
+)
