@@ -1,5 +1,6 @@
-import { length } from 'sequences'
+// TODO: Prefer native utility invariants
 import { pipe } from 'ramda-typed'
+import { length } from 'sequences'
 import { not } from '../logic/not.js'
 import { strictEquals } from '../logic/strict-equals.js'
 import { type ElementaryRuleSymmetriesParam } from './symmetries.js'
