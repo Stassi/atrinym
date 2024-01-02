@@ -8,18 +8,22 @@ import {
   elementaryRuleSymmetries,
 } from './symmetries.js'
 
+type BinaryCallback<T> = (x: T) => T
+type BooleanCallback = BinaryCallback<boolean[]>
+
 export type ElementaryRuleEquivalences = Record<
   'complemented' | 'complementedAndReflected' | 'reflected',
   ElementaryRuleSymmetries
 >
 
-function complement(x: boolean[]): boolean[] {
-  return reverse(x).map(not)
-}
+const complement: BooleanCallback = pipe(reverse, map(not)),
+  reflect: BooleanCallback = pipe(swap(1, 4), swap(3, 6))
 
-const reflect: (x: boolean[]) => boolean[] = pipe(swap(1, 4), swap(3, 6))
-
-const equivalences: (x: boolean[]) => ElementaryRuleEquivalences = pipe(
+export const elementaryRuleEquivalences: (
+  x: ElementaryRuleSymmetriesParam,
+) => ElementaryRuleEquivalences = pipe(
+  elementaryRuleSymmetries,
+  prop('booleans'),
   // @ts-expect-error -- valid type
   applySpec({
     complemented: complement,
@@ -27,12 +31,4 @@ const equivalences: (x: boolean[]) => ElementaryRuleEquivalences = pipe(
     reflected: reflect,
   }),
   map(elementaryRuleSymmetries),
-)
-
-export const elementaryRuleEquivalences: (
-  x: ElementaryRuleSymmetriesParam,
-) => ElementaryRuleEquivalences = pipe(
-  elementaryRuleSymmetries,
-  prop('booleans'),
-  equivalences,
 )
