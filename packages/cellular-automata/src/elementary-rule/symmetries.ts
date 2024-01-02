@@ -13,17 +13,13 @@ export type ElementaryRuleSymmetries = {
   decimal: number
 }
 
-function decimalToBinary(n: number): string {
-  return transcode(n).toBinary()
-}
-
-function decimalToBooleans(n: number): boolean[] {
-  return binaryToBooleans(decimalToBinary(n))
-}
-
 function ruleToDecimal(x: ElementaryRuleSymmetriesParam): number {
   if (typeof x === 'number') return x
   return fromBinary(typeof x === 'string' ? x : booleansToBinary(x)).toNumber()
+}
+
+function decimalToBinary(n: number): string {
+  return transcode(n).toBinary()
 }
 
 export const elementaryRuleSymmetries: (
@@ -33,7 +29,7 @@ export const elementaryRuleSymmetries: (
   ruleToDecimal,
   applySpec({
     binary: decimalToBinary,
-    booleans: decimalToBooleans,
+    booleans: pipe(decimalToBinary, binaryToBooleans),
     decimal: identity,
   }),
 )
