@@ -9,15 +9,15 @@ import {
 } from './symmetries.js'
 
 type BinaryCallback<T> = (x: T) => T
-type BooleanCallback = BinaryCallback<boolean[]>
+type BooleansCallback = BinaryCallback<boolean[]>
 
 export type ElementaryRuleEquivalences = Record<
   'complemented' | 'complementedAndReflected' | 'reflected',
   ElementaryRuleSymmetries
 >
 
-const complement: BooleanCallback = pipe(reverse, map(not)),
-  reflect: BooleanCallback = pipe(swap(1, 4), swap(3, 6))
+const complement: BooleansCallback = pipe(reverse, map(not)),
+  reflect: BooleansCallback = pipe(swap(1, 4), swap(3, 6))
 
 export const elementaryRuleEquivalences: (
   x: ElementaryRuleSymmetriesParam,
