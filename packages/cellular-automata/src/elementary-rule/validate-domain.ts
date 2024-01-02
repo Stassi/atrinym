@@ -1,9 +1,12 @@
 import { length } from 'sequences'
+import { pipe } from 'ramda-typed'
 import { not } from '../logic/not.js'
 import { strictEquals } from '../logic/strict-equals.js'
 import { type ElementaryRuleSymmetriesParam } from './symmetries.js'
 
-const strictEqualsEight: (n: number) => boolean = strictEquals(8)
+const invalidOctetLength: (
+  x: Exclude<ElementaryRuleSymmetriesParam, number>,
+) => boolean = pipe(length, strictEquals(8), not)
 
 export function validateDomain(
   x: ElementaryRuleSymmetriesParam,
@@ -11,7 +14,7 @@ export function validateDomain(
   if (typeof x === 'number') {
     if (x < 0 || x > 255)
       throw new RangeError('Decimal octet must be in range: [0, 256)')
-  } else if (not(strictEqualsEight(length(x))))
+  } else if (invalidOctetLength(x))
     throw new RangeError('Octet length must equal 8')
   return x
 }
