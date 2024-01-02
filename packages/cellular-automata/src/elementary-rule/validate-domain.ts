@@ -1,6 +1,6 @@
 import { length } from 'sequences'
-import { strictEquals } from '../logic/strict-equals.js'
 import { not } from '../logic/not.js'
+import { strictEquals } from '../logic/strict-equals.js'
 import { type ElementaryRuleSymmetriesParam } from './symmetries.js'
 
 const strictEqualsEight: (n: number) => boolean = strictEquals(8)
