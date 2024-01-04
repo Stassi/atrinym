@@ -10,6 +10,7 @@ type Domain = {
   complementedAndReflected: number
   decimal: number
   reflected: number
+  rule: ElementaryRule
 }
 
 describe('elementaryRule(...)', (): void => {
@@ -21,6 +22,7 @@ describe('elementaryRule(...)', (): void => {
       complementedAndReflected: 255,
       decimal: 0,
       reflected: 0,
+      rule: elementaryRule(0),
     },
     {
       binary: '00011110',
@@ -29,6 +31,7 @@ describe('elementaryRule(...)', (): void => {
       complementedAndReflected: 149,
       decimal: 30,
       reflected: 86,
+      rule: elementaryRule(30),
     },
     {
       binary: '01101110',
@@ -37,6 +40,7 @@ describe('elementaryRule(...)', (): void => {
       complementedAndReflected: 193,
       decimal: 110,
       reflected: 124,
+      rule: elementaryRule(110),
     },
     {
       binary: '11111111',
@@ -45,9 +49,10 @@ describe('elementaryRule(...)', (): void => {
       complementedAndReflected: 0,
       decimal: 255,
       reflected: 255,
+      rule: elementaryRule(255),
     },
   ])('rule: $decimal', (domain: Domain): void => {
-    describe.each(['binary', 'booleans', 'decimal'])(
+    describe.each(['binary', 'booleans', 'decimal', 'rule'])(
       'from %s',
       (key: string): void => {
         const { equivalences, ...symmetries }: ElementaryRule = elementaryRule(
