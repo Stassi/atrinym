@@ -19,6 +19,6 @@ export function elementaryRule(
 
   return {
     ...symmetries,
-    equivalences: elementaryRuleEquivalences(symmetries.decimal),
+    equivalences: elementaryRuleEquivalences(symmetries),
   }
 }
