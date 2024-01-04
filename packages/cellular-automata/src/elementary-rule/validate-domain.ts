@@ -3,15 +3,15 @@ import { pipe } from 'ramda-typed'
 import { length } from 'sequences'
 import { not } from '../logic/not.js'
 import { strictEquals } from '../logic/strict-equals.js'
-import { type ElementaryRuleSymmetriesParam } from './symmetries.js'
+import { type ElementaryRuleSymmetriesPrimitives } from './symmetries.js'
 
 const invalidOctetLength: (
-  x: Exclude<ElementaryRuleSymmetriesParam, number>,
+  x: Exclude<ElementaryRuleSymmetriesPrimitives, number>,
 ) => boolean = pipe(length, strictEquals(8), not)
 
 export function validateDomain(
-  x: ElementaryRuleSymmetriesParam,
-): ElementaryRuleSymmetriesParam {
+  x: ElementaryRuleSymmetriesPrimitives,
+): ElementaryRuleSymmetriesPrimitives {
   if (typeof x === 'number') {
     if (x < 0 || x > 255)
       throw new RangeError('Decimal octet must be in range: [0, 256)')

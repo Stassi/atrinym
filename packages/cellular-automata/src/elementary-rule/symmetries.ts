@@ -5,7 +5,7 @@ import { binaryToBooleans } from '../octet/binary-to-booleans.js'
 import { booleansToBinary } from '../octet/booleans-to-binary.js'
 import { validateDomain } from './validate-domain.js'
 
-export type ElementaryRuleSymmetriesParam = boolean[] | number | string
+export type ElementaryRuleSymmetriesPrimitives = boolean[] | number | string
 
 export type ElementaryRuleSymmetries = {
   binary: string
@@ -13,7 +13,23 @@ export type ElementaryRuleSymmetries = {
   decimal: number
 }
 
-function ruleToDecimal(x: ElementaryRuleSymmetriesParam): number {
+export type ElementaryRuleSymmetriesParam =
+  | ElementaryRuleSymmetries
+  | ElementaryRuleSymmetriesPrimitives
+
+function isElementaryRuleSymmetries(
+  x: ElementaryRuleSymmetriesParam,
+): x is ElementaryRuleSymmetries {
+  return (
+    typeof x === 'object' &&
+    !Array.isArray(x) &&
+    ['binary', 'booleans', 'decimal'].every((key: string): boolean =>
+      Object.hasOwn(x, key),
+    )
+  )
+}
+
+function primitivesToDecimal(x: ElementaryRuleSymmetriesPrimitives): number {
   if (typeof x === 'number') return x
   return fromBinary(typeof x === 'string' ? x : booleansToBinary(x)).toNumber()
 }
@@ -22,14 +38,20 @@ function decimalToBinary(n: number): string {
   return transcode(n).toBinary()
 }
 
-export const elementaryRuleSymmetries: (
-  x: ElementaryRuleSymmetriesParam,
+const primitivesToSymmetries: (
+  x: ElementaryRuleSymmetriesPrimitives,
 ) => ElementaryRuleSymmetries = pipe(
   validateDomain,
-  ruleToDecimal,
+  primitivesToDecimal,
   applySpec({
     binary: decimalToBinary,
     booleans: pipe(decimalToBinary, binaryToBooleans),
     decimal: identity,
   }),
 )
+
+export function elementaryRuleSymmetries(
+  x: ElementaryRuleSymmetriesParam,
+): ElementaryRuleSymmetries {
+  return isElementaryRuleSymmetries(x) ? x : primitivesToSymmetries(x)
+}
