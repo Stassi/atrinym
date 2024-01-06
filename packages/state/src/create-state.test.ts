@@ -57,7 +57,7 @@ describe('createState(...)', (): void => {
         const state: TestState = createState(actual)
 
         // @ts-expect-error -- known but incorrectly inferred argument type
-        state.update((prev: T) => double(prev))
+        state.update(double)
 
         expect(state.get()).toBe(expected)
       })
