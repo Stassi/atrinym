@@ -31,7 +31,7 @@ importers:
         version: 3.0.0(webpack@5.89.0)
       '@mdx-js/react':
         specifier: ^3.0.0
-        version: 3.0.0(@types/react@18.2.46)(react@18.2.0)
+        version: 3.0.0(@types/react@18.2.47)(react@18.2.0)
       '@next/mdx':
         specifier: ^14.0.4
         version: 14.0.4(@mdx-js/loader@3.0.0)(@mdx-js/react@3.0.0)
@@ -55,8 +55,8 @@ importers:
         specifier: ^20.10.6
         version: 20.10.6
       '@types/react':
-        specifier: ^18.2.46
-        version: 18.2.46
+        specifier: ^18.2.47
+        version: 18.2.47
       '@types/react-dom':
         specifier: ^18.2.18
         version: 18.2.18
@@ -92,8 +92,8 @@ importers:
         specifier: ^20.10.6
         version: 20.10.6
       '@types/react':
-        specifier: ^18.2.46
-        version: 18.2.46
+        specifier: ^18.2.47
+        version: 18.2.47
       '@types/react-dom':
         specifier: ^18.2.18
         version: 18.2.18
@@ -409,8 +409,8 @@ importers:
         specifier: ^11.1.5
         version: 11.1.5(rollup@4.9.4)(typescript@5.3.3)
       '@types/react':
-        specifier: ^18.2.46
-        version: 18.2.46
+        specifier: ^18.2.47
+        version: 18.2.47
       '@types/react-dom':
         specifier: ^18.2.18
         version: 18.2.18
@@ -439,8 +439,8 @@ importers:
         specifier: ^2.0.10
         version: 2.0.10
       '@types/react':
-        specifier: ^18.2.46
-        version: 18.2.46
+        specifier: ^18.2.47
+        version: 18.2.47
       '@types/react-dom':
         specifier: ^18.2.18
         version: 18.2.18
@@ -1152,14 +1152,14 @@ packages:
     transitivePeerDependencies:
       - supports-color
 
-  /@mdx-js/react@3.0.0(@types/react@18.2.46)(react@18.2.0):
+  /@mdx-js/react@3.0.0(@types/react@18.2.47)(react@18.2.0):
     resolution: {integrity: sha512-nDctevR9KyYFyV+m+/+S4cpzCWHqj+iHDHq3QrsWezcC+B17uZdIWgCguESUkwFhM3n/56KxWVE3V6EokrmONQ==}
     peerDependencies:
       '@types/react': '>=16'
       react: '>=16'
     dependencies:
       '@types/mdx': 2.0.10
-      '@types/react': 18.2.46
+      '@types/react': 18.2.47
       react: 18.2.0
     dev: false
 
@@ -1212,7 +1212,7 @@ packages:
         optional: true
     dependencies:
       '@mdx-js/loader': 3.0.0(webpack@5.89.0)
-      '@mdx-js/react': 3.0.0(@types/react@18.2.46)(react@18.2.0)
+      '@mdx-js/react': 3.0.0(@types/react@18.2.47)(react@18.2.0)
       source-map: 0.7.4
     dev: false
 
@@ -1636,11 +1636,11 @@ packages:
   /@types/react-dom@18.2.18:
     resolution: {integrity: sha512-TJxDm6OfAX2KJWJdMEVTwWke5Sc/E/RlnPGvGfS0W7+6ocy2xhDVQVh/KvC2Uf7kACs+gDytdusDSdWfWkaNzw==}
     dependencies:
-      '@types/react': 18.2.46
+      '@types/react': 18.2.47
     dev: true
 
-  /@types/react@18.2.46:
-    resolution: {integrity: sha512-nNCvVBcZlvX4NU1nRRNV/mFl1nNRuTuslAJglQsq+8ldXe5Xv0Wd2f7WTE3jOxhLH2BFfiZGC6GCp+kHQbgG+w==}
+  /@types/react@18.2.47:
+    resolution: {integrity: sha512-xquNkkOirwyCgoClNk85BjP+aqnIS+ckAJ8i37gAbDs14jfW/J23f2GItAf33oiUPQnqNMALiFeoM9Y5mbjpVQ==}
     dependencies:
       '@types/prop-types': 15.7.11
       '@types/scheduler': 0.16.8
