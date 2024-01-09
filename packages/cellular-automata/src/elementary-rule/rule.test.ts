@@ -3,11 +3,7 @@ import {
   type ElementaryRuleSymmetries,
   elementaryRuleSymmetries,
 } from './symmetries.js'
-import {
-  type ElementaryRule,
-  type ElementaryRuleParam,
-  elementaryRule,
-} from './rule.js'
+import { type ElementaryRule, elementaryRule } from './rule.js'
 
 type Domain = ElementaryRuleSymmetries & {
   symmetries: ElementaryRuleSymmetries
@@ -148,11 +144,8 @@ describe('elementaryRule(...)', (): void => {
         'from %s',
         // @ts-expect-error -- valid parameter type
         (domainKey: keyof Domain): void => {
-          const domainElement: ElementaryRuleParam = domain[domainKey]
-          const actual: ElementaryRule = elementaryRule(domainElement)
-
           it('should return the elementary rule equivalences including each symmetrical representation', (): void => {
-            expect(actual).toStrictEqual(expected)
+            expect(elementaryRule(domain[domainKey])).toStrictEqual(expected)
           })
         },
       )
