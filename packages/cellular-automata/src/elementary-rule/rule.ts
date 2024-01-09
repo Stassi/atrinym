@@ -1,24 +1,17 @@
+import { pipe } from 'ramda-typed'
 import {
-  elementaryRuleEquivalences,
   type ElementaryRuleEquivalences,
+  elementaryRuleEquivalences,
 } from './equivalences.js'
 import {
-  elementaryRuleSymmetries,
-  type ElementaryRuleSymmetries,
   type ElementaryRuleSymmetriesParam,
+  elementaryRuleSymmetries,
 } from './symmetries.js'
 
-export type ElementaryRule = ElementaryRuleSymmetries & {
-  equivalences: ElementaryRuleEquivalences
-}
+export type ElementaryRule = ElementaryRuleEquivalences
+export type ElementaryRuleParam = ElementaryRuleSymmetriesParam
 
-export function elementaryRule(
-  x: ElementaryRuleSymmetriesParam,
-): ElementaryRule {
-  const symmetries: ElementaryRuleSymmetries = elementaryRuleSymmetries(x)
-
-  return {
-    ...symmetries,
-    equivalences: elementaryRuleEquivalences(symmetries),
-  }
-}
+export const elementaryRule: (x: ElementaryRuleParam) => ElementaryRule = pipe(
+  elementaryRuleSymmetries,
+  elementaryRuleEquivalences,
+)
