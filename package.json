@@ -11,8 +11,8 @@
     "integrity:repair:all": "turbo run integrity:repair",
     "integrity:validate": "eslint . --ext cjs,js,json,mjs,ts,tsx --ignore-pattern apps/* --ignore-pattern packages/*",
     "integrity:validate:all": "turbo run integrity:validate",
-    "start:dev:all": "turbo run start:dev --concurrency=13",
-    "start:prod:all": "turbo run start:prod --concurrency=13",
+    "start:dev:all": "turbo run start:dev --concurrency=14",
+    "start:prod:all": "turbo run start:prod --concurrency=14",
     "test:all": "turbo run test",
     "turbo:daemon:reload": "turbo daemon clean"
   },
