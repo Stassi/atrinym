@@ -1,109 +1,161 @@
 import { describe, expect, it } from '@jest/globals'
-import { type ElementaryRule, elementaryRule } from './rule.js'
-import { type ElementaryRuleEquivalences } from './equivalences.js'
-import { type ElementaryRuleSymmetries } from './symmetries.js'
+import {
+  type ElementaryRuleSymmetries,
+  elementaryRuleSymmetries,
+} from './symmetries.js'
+import {
+  type ElementaryRule,
+  type ElementaryRuleParam,
+  elementaryRule,
+} from './rule.js'
 
-type Domain = {
-  binary: string
-  booleans: boolean[]
-  complemented: number
-  complementedAndReflected: number
-  decimal: number
-  reflected: number
-  rule: ElementaryRule
+type Domain = ElementaryRuleSymmetries & {
+  symmetries: ElementaryRuleSymmetries
 }
 
 describe('elementaryRule(...)', (): void => {
   describe.each([
     {
-      binary: '00000000',
-      booleans: [false, false, false, false, false, false, false, false],
-      complemented: 255,
-      complementedAndReflected: 255,
-      decimal: 0,
-      reflected: 0,
-      rule: elementaryRule(0),
-    },
-    {
-      binary: '00011110',
-      booleans: [false, false, false, true, true, true, true, false],
-      complemented: 135,
-      complementedAndReflected: 149,
-      decimal: 30,
-      reflected: 86,
-      rule: elementaryRule(30),
-    },
-    {
-      binary: '01101110',
-      booleans: [false, true, true, false, true, true, true, false],
-      complemented: 137,
-      complementedAndReflected: 193,
-      decimal: 110,
-      reflected: 124,
-      rule: elementaryRule(110),
-    },
-    {
-      binary: '11111111',
-      booleans: [true, true, true, true, true, true, true, true],
-      complemented: 0,
-      complementedAndReflected: 0,
-      decimal: 255,
-      reflected: 255,
-      rule: elementaryRule(255),
-    },
-  ])('rule: $decimal', (domain: Domain): void => {
-    describe.each(['binary', 'booleans', 'decimal', 'rule'])(
-      'from %s',
-      (key: string): void => {
-        const { equivalences, ...symmetries }: ElementaryRule = elementaryRule(
-          // @ts-expect-error -- keys are valid indices
-          // eslint-disable-next-line @typescript-eslint/no-unsafe-argument -- keys are valid indices
-          domain[key],
-        )
-
-        describe('symmetries', (): void => {
-          const {
-              binary: asBinary,
-              booleans: asBooleans,
-              decimal: asDecimal,
-            }: ElementaryRuleSymmetries = symmetries,
-            { binary, booleans, decimal }: Domain = domain
-
-          it('should return its elementary rule as binary', (): void => {
-            expect(asBinary).toBe(binary)
-          })
-
-          it('should return its elementary rule as booleans', (): void => {
-            expect(asBooleans).toStrictEqual(booleans)
-          })
-
-          it('should return its elementary rule as decimal', (): void => {
-            expect(asDecimal).toBe(decimal)
-          })
-        })
-
-        describe('equivalences', (): void => {
-          const {
-              complemented: { decimal: asComplemented },
-              complementedAndReflected: { decimal: asComplementedAndReflected },
-              reflected: { decimal: asReflected },
-            }: ElementaryRuleEquivalences = equivalences,
-            { complemented, complementedAndReflected, reflected }: Domain =
-              domain
-
-          it('should return its complementary elementary rule as decimal', (): void => {
-            expect(asComplemented).toBe(complemented)
-          })
-
-          it('should return its reflected elementary rule as decimal', (): void => {
-            expect(asReflected).toBe(reflected)
-          })
-
-          it('should return its complementary and reflected elementary rule as decimal', (): void => {
-            expect(asComplementedAndReflected).toBe(complementedAndReflected)
-          })
-        })
+      domain: {
+        binary: '00000000',
+        booleans: [false, false, false, false, false, false, false, false],
+        decimal: 0,
+        symmetries: elementaryRuleSymmetries(0),
       },
-    )
-  })
+      expected: {
+        complemented: {
+          binary: '11111111',
+          booleans: [true, true, true, true, true, true, true, true],
+          decimal: 255,
+        },
+        complementedAndReflected: {
+          binary: '11111111',
+          booleans: [true, true, true, true, true, true, true, true],
+          decimal: 255,
+        },
+        reflected: {
+          binary: '00000000',
+          booleans: [false, false, false, false, false, false, false, false],
+          decimal: 0,
+        },
+        rule: {
+          binary: '00000000',
+          booleans: [false, false, false, false, false, false, false, false],
+          decimal: 0,
+        },
+      },
+    },
+    {
+      domain: {
+        binary: '00011110',
+        booleans: [false, false, false, true, true, true, true, false],
+        decimal: 30,
+        symmetries: elementaryRuleSymmetries(30),
+      },
+      expected: {
+        complemented: {
+          binary: '10000111',
+          booleans: [true, false, false, false, false, true, true, true],
+          decimal: 135,
+        },
+        complementedAndReflected: {
+          binary: '10010101',
+          booleans: [true, false, false, true, false, true, false, true],
+          decimal: 149,
+        },
+        reflected: {
+          binary: '01010110',
+          booleans: [false, true, false, true, false, true, true, false],
+          decimal: 86,
+        },
+        rule: {
+          binary: '00011110',
+          booleans: [false, false, false, true, true, true, true, false],
+          decimal: 30,
+        },
+      },
+    },
+    {
+      domain: {
+        binary: '01101110',
+        booleans: [false, true, true, false, true, true, true, false],
+        decimal: 110,
+        symmetries: elementaryRuleSymmetries(110),
+      },
+      expected: {
+        complemented: {
+          binary: '10001001',
+          booleans: [true, false, false, false, true, false, false, true],
+          decimal: 137,
+        },
+        complementedAndReflected: {
+          binary: '11000001',
+          booleans: [true, true, false, false, false, false, false, true],
+          decimal: 193,
+        },
+        reflected: {
+          binary: '01111100',
+          booleans: [false, true, true, true, true, true, false, false],
+          decimal: 124,
+        },
+        rule: {
+          binary: '01101110',
+          booleans: [false, true, true, false, true, true, true, false],
+          decimal: 110,
+        },
+      },
+    },
+    {
+      domain: {
+        binary: '11111111',
+        booleans: [true, true, true, true, true, true, true, true],
+        decimal: 255,
+        symmetries: elementaryRuleSymmetries(255),
+      },
+      expected: {
+        complemented: {
+          binary: '00000000',
+          booleans: [false, false, false, false, false, false, false, false],
+          decimal: 0,
+        },
+        complementedAndReflected: {
+          binary: '00000000',
+          booleans: [false, false, false, false, false, false, false, false],
+          decimal: 0,
+        },
+        reflected: {
+          binary: '11111111',
+          booleans: [true, true, true, true, true, true, true, true],
+          decimal: 255,
+        },
+        rule: {
+          binary: '11111111',
+          booleans: [true, true, true, true, true, true, true, true],
+          decimal: 255,
+        },
+      },
+    },
+  ])(
+    'rule: $domain.decimal',
+    ({
+      domain,
+      expected,
+    }: {
+      domain: Domain
+      expected: ElementaryRule
+    }): void => {
+      describe.each(['binary', 'booleans', 'decimal', 'symmetries'])(
+        'from %s',
+        // @ts-expect-error -- valid parameter type
+        (domainKey: keyof Domain): void => {
+          const domainElement: ElementaryRuleParam = domain[domainKey]
+          const actual: ElementaryRule = elementaryRule(domainElement)
+
+          it('should return the elementary rule equivalences including each symmetrical representation', (): void => {
+            expect(actual).toStrictEqual(expected)
+          })
+        },
+      )
+    },
+  )
 })
