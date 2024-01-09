@@ -1,3 +1,4 @@
+// TODO: Prefer native utility invariants
 import { pipe } from 'ramda-typed'
 import {
   type ElementaryRuleEquivalences,
