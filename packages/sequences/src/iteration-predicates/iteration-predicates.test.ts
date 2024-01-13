@@ -42,12 +42,10 @@ describe('iteration predicates', (): void => {
       expected,
     }: {
       actual: () => Generator<number> | Generator<number, 'done', boolean>
-      expected: {
-        iterator: boolean
-        iterableIterator: boolean
-        generator: boolean
-        iterable: boolean
-      }
+      expected: Record<
+        'generator' | 'iterable' | 'iterableIterator' | 'iterator',
+        boolean
+      >
       functionName: string
     }): void => {
       describe.each([
