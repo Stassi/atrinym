@@ -6,10 +6,14 @@ import { isIterator } from './is-iterator.js'
 import { isIterableIterator } from './is-iterable-iterator.js'
 import { isIterable } from './is-iterable.js'
 
+type NumberGenerator = Generator<number>
+type NumberGeneratorInterruptableExplicit = Generator<number, 'done', boolean>
+type NumberIterator = Iterator<number>
+
 describe('iteration predicates', (): void => {
   describe.each([
     {
-      *actual(): Generator<number> {
+      *actual(): NumberGenerator {
         let i = 0
         while (true) yield i++
       },
@@ -19,10 +23,10 @@ describe('iteration predicates', (): void => {
         iterableIterator: true,
         iterator: true,
       },
-      functionName: 'natural numbers',
+      functionName: 'generator',
     },
     {
-      *actual(): Generator<number, 'done', boolean> {
+      *actual(): NumberGeneratorInterruptableExplicit {
         let i = 0
         while (true) if (yield i++) break
         return 'done'
@@ -33,7 +37,24 @@ describe('iteration predicates', (): void => {
         iterableIterator: true,
         iterator: true,
       },
-      functionName: 'natural numbers (interruptable, explicit finish)',
+      functionName: 'generator (interruptable, explicit finish)',
+    },
+    {
+      actual(): NumberIterator {
+        let i = 0
+        return {
+          next(): IteratorResult<number> {
+            return { value: i++ }
+          },
+        }
+      },
+      expected: {
+        generator: false,
+        iterable: false,
+        iterableIterator: false,
+        iterator: true,
+      },
+      functionName: 'iterator',
     },
   ])(
     'function: $functionName',
@@ -41,7 +62,10 @@ describe('iteration predicates', (): void => {
       actual,
       expected,
     }: {
-      actual: () => Generator<number> | Generator<number, 'done', boolean>
+      actual: () =>
+        | NumberGenerator
+        | NumberGeneratorInterruptableExplicit
+        | NumberIterator
       expected: Record<
         'generator' | 'iterable' | 'iterableIterator' | 'iterator',
         boolean
