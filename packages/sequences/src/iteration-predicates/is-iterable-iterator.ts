@@ -1,16 +1,8 @@
-/* eslint-disable @typescript-eslint/no-explicit-any -- implements official generic types */
-
-import { type IterableNonNative, isIterable } from './is-iterable.js'
+import { isIterable } from './is-iterable.js'
 import { isIterator } from './is-iterator.js'
 
-export type IterableIterator<
-  T,
-  TReturn = any,
-  TNext = undefined,
-> = IterableNonNative<T> & Iterator<T, TReturn, TNext>
-
-export function isIterableIterator<T, TReturn = any, TNext = undefined>(
-  x: IterableIterator<T, TReturn, TNext>,
-): x is IterableIterator<T, TReturn, TNext> {
+export function isIterableIterator<T>(
+  x: IterableIterator<T>,
+): x is IterableIterator<T> {
   return isIterator(x) && isIterable(x)
 }

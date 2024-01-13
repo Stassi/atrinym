@@ -6,7 +6,7 @@ export function isGenerator<T = unknown, TReturn = any, TNext = unknown>(
   x: Generator<T, TReturn, TNext>,
 ): x is Generator<T, TReturn, TNext> {
   return (
-    isIterableIterator(x) &&
+    isIterableIterator(x as IterableIterator<T>) &&
     strictEqualsFunction(typeof x.return) &&
     strictEqualsFunction(typeof x.throw)
   )
