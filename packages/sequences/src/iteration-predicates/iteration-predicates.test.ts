@@ -1,10 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unnecessary-condition -- while(true) necessary for iteration */
 
 import { describe, expect, it } from '@jest/globals'
-import { isGenerator } from './is-generator.js'
-import { isIterator } from './is-iterator.js'
-import { isIterableIterator } from './is-iterable-iterator.js'
-import { isIterable } from './is-iterable.js'
+import {
+  isGenerator,
+  isIterable,
+  isIterableIterator,
+  isIterator,
+} from './index.js'
 
 type NumberGenerator = Generator<number>
 type NumberGeneratorInterruptableExplicit = Generator<number, 'done', boolean>
