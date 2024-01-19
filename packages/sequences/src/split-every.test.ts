@@ -20,6 +20,13 @@ describe('splitEvery(...)', (): void => {
     describe.each([
       {
         actual: {
+          collection: [0, 1],
+          width: 3,
+        },
+        expected: [[0, 1]],
+      },
+      {
+        actual: {
           collection: [0, 1, 2, 3, 4, 5, 6],
           width: 3,
         },
