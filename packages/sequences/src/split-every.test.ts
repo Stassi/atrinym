@@ -34,6 +34,13 @@ describe('splitEvery(...)', (): void => {
       },
       {
         actual: {
+          collection: 'lp',
+          width: 3,
+        },
+        expected: ['lp'],
+      },
+      {
+        actual: {
           collection: 'tcpudpicp',
           width: 3,
         },
