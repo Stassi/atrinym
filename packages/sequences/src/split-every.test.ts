@@ -1,9 +1,7 @@
 import { describe, expect, it } from '@jest/globals'
 import { splitEvery as ramdaSplitEvery } from './ramda/split-every.js'
-import {
-  type Splittable,
-  splitEvery as nativeSplitEvery,
-} from './split-every.js'
+import { splitEvery as nativeSplitEvery } from './split-every.js'
+import { type Sliceable } from './slice.js'
 
 type SplitEvery = typeof nativeSplitEvery
 
@@ -23,28 +21,28 @@ describe('splitEvery(...)', (): void => {
       {
         actual: {
           collection: [0, 1, 2, 3, 4, 5, 6],
-          length: 3,
+          width: 3,
         },
         expected: [[0, 1, 2], [3, 4, 5], [6]],
       },
       {
         actual: {
           collection: 'tcpudpicp',
-          length: 3,
+          width: 3,
         },
         expected: ['tcp', 'udp', 'icp'],
       },
     ])(
-      'input: $actual',
+      'collection: $actual.collection; width: $actual.width',
       ({
-        actual: { collection, length },
+        actual: { collection, width },
         expected,
       }: {
-        actual: { length: number; collection: Splittable<unknown> }
-        expected: Splittable<unknown>[]
+        actual: { collection: Sliceable<unknown>; width: number }
+        expected: Sliceable<unknown>[]
       }): void => {
         it('should return the length of the given sequence', (): void => {
-          expect(splitEvery(length, collection)).toStrictEqual(expected)
+          expect(splitEvery(width, collection)).toStrictEqual(expected)
         })
       },
     )
