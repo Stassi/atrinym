@@ -3,8 +3,6 @@ import { splitEvery as ramdaSplitEvery } from './ramda/split-every.js'
 import { splitEvery as nativeSplitEvery } from './split-every.js'
 import { type Sliceable } from './slice.js'
 
-type SplitEvery = typeof nativeSplitEvery
-
 describe('splitEvery(...)', (): void => {
   describe.each([
     {
@@ -15,50 +13,53 @@ describe('splitEvery(...)', (): void => {
       name: 'ramda',
       splitEvery: ramdaSplitEvery,
     },
+  ])(
+    'invariant: $name',
     // @ts-expect-error -- valid type
-  ])('invariant: $name', ({ splitEvery }: { splitEvery: SplitEvery }): void => {
-    describe.each([
-      {
-        actual: {
-          collection: [0, 1],
-          width: 3,
+    ({ splitEvery }: { splitEvery: typeof nativeSplitEvery }): void => {
+      describe.each([
+        {
+          actual: {
+            collection: [0, 1],
+            width: 3,
+          },
+          expected: [[0, 1]],
         },
-        expected: [[0, 1]],
-      },
-      {
-        actual: {
-          collection: [0, 1, 2, 3, 4, 5, 6],
-          width: 3,
+        {
+          actual: {
+            collection: [0, 1, 2, 3, 4, 5, 6],
+            width: 3,
+          },
+          expected: [[0, 1, 2], [3, 4, 5], [6]],
         },
-        expected: [[0, 1, 2], [3, 4, 5], [6]],
-      },
-      {
-        actual: {
-          collection: 'lp',
-          width: 3,
+        {
+          actual: {
+            collection: 'lp',
+            width: 3,
+          },
+          expected: ['lp'],
         },
-        expected: ['lp'],
-      },
-      {
-        actual: {
-          collection: 'tcpudpicp',
-          width: 3,
+        {
+          actual: {
+            collection: 'tcpudpicp',
+            width: 3,
+          },
+          expected: ['tcp', 'udp', 'icp'],
         },
-        expected: ['tcp', 'udp', 'icp'],
-      },
-    ])(
-      'collection: $actual.collection; width: $actual.width',
-      ({
-        actual: { collection, width },
-        expected,
-      }: {
-        actual: { collection: Sliceable<unknown>; width: number }
-        expected: Sliceable<unknown>[]
-      }): void => {
-        it('should return slices of a given width', (): void => {
-          expect(splitEvery(width, collection)).toStrictEqual(expected)
-        })
-      },
-    )
-  })
+      ])(
+        'collection: $actual.collection; width: $actual.width',
+        ({
+          actual: { collection, width },
+          expected,
+        }: {
+          actual: { collection: Sliceable<unknown>; width: number }
+          expected: Sliceable<unknown>[]
+        }): void => {
+          it('should return slices of a given width', (): void => {
+            expect(splitEvery(width, collection)).toStrictEqual(expected)
+          })
+        },
+      )
+    },
+  )
 })
