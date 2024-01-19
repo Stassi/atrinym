@@ -41,6 +41,16 @@ describe('splitEvery(...)', (): void => {
         },
         {
           actual: {
+            collection: [0, 1, 2, 3, 4, 5, 6],
+            width: 4,
+          },
+          expected: [
+            [0, 1, 2, 3],
+            [4, 5, 6],
+          ],
+        },
+        {
+          actual: {
             collection: '',
             width: 2,
           },
