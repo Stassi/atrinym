@@ -55,7 +55,7 @@ describe('splitEvery(...)', (): void => {
         actual: { collection: Sliceable<unknown>; width: number }
         expected: Sliceable<unknown>[]
       }): void => {
-        it('should return the length of the given sequence', (): void => {
+        it('should return slices of a given width', (): void => {
           expect(splitEvery(width, collection)).toStrictEqual(expected)
         })
       },
