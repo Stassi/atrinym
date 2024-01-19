@@ -1,4 +1,4 @@
-// TODO: Extract to `package:tables`
+// TODO: Extract to `package:tables` | implement `sequences:splitEvery`
 import { add } from 'arithmetic'
 import { length } from 'sequences'
 import { createState, type State } from 'state'
