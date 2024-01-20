@@ -1,13 +1,8 @@
 // TODO: Replace `R.pipe` with native `conduit:pipe`
 import { pipe } from 'ramda-typed'
-import { type State, createState } from 'state'
+import { createState, type State } from 'state'
 import { length } from './length.js'
-import {
-  type BinaryCallback,
-  type Sliceable,
-  type SliceableCallback,
-  slice,
-} from './slice.js'
+import { slice, type Sliceable, type SliceableCallback } from './slice.js'
 
 type Callback<T, U> = (x: T) => U
 
@@ -23,20 +18,14 @@ export function splitEvery<T>(
       createState(collection),
     { get: generated, update: updateGenerated } = createState(
       [],
-    ) as unknown as State<Sliced<T>>
+    ) as unknown as State<Sliced<T>>,
+    setTailAsRemaining: Callback<Sliceable<T>, void> = pipe(tail, setRemaining),
+    iterate = (chunk: Sliceable<T>): void => {
+      updateGenerated((prev: Sliced<T>): Sliced<T> => [...prev, head(chunk)])
+      setTailAsRemaining(chunk)
+    }
 
-  while (length(remaining()) > 0) {
-    ;[
-      pipe(
-        (x: Sliceable<T>): BinaryCallback<Sliced<T>> =>
-          (prev: Sliced<T>): Sliced<T> => [...prev, head(x)],
-        updateGenerated,
-      ),
-      pipe(tail, setRemaining),
-    ].forEach((fn: Callback<Sliceable<T>, void>): void => {
-      fn(remaining())
-    })
-  }
+  while (length(remaining()) > 0) iterate(remaining())
 
   return generated()
 }
