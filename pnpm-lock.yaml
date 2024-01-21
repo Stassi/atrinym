@@ -298,6 +298,9 @@ importers:
       '@rollup/plugin-typescript':
         specifier: ^11.1.5
         version: 11.1.5(rollup@4.9.4)(typescript@5.3.3)
+      conduit:
+        specifier: workspace:*
+        version: link:../conduit
       eslint-config-custom:
         specifier: workspace:*
         version: link:../eslint-config-custom
