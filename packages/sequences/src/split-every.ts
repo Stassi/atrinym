@@ -8,6 +8,21 @@ type Callback<T, U> = (x: T) => U
 
 type Sliced<T> = Sliceable<T>[]
 
+export function splitEveryImperative<T>(
+  width: number,
+  collection: Sliceable<T>,
+): Sliced<T> {
+  let i = 0
+  const result: Sliced<T> = []
+
+  while (i < collection.length) {
+    result.push(collection.slice(i, i + width))
+    i += width
+  }
+
+  return result
+}
+
 export function splitEvery<T>(
   width: number,
   collection: Sliceable<T>,
