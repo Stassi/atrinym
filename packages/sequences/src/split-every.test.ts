@@ -1,13 +1,20 @@
 import { describe, expect, it } from '@jest/globals'
-import { splitEvery as ramdaSplitEvery } from './ramda/split-every.js'
-import { splitEvery as nativeSplitEvery } from './split-every.js'
 import { type Sliceable } from './slice.js'
+import {
+  splitEvery as splitEveryDeclarative,
+  splitEveryImperative,
+} from './split-every.js'
+import { splitEvery as ramdaSplitEvery } from './ramda/split-every.js'
 
 describe('splitEvery(...)', (): void => {
   describe.each([
     {
-      name: 'native',
-      splitEvery: nativeSplitEvery,
+      name: 'declarative (native)',
+      splitEvery: splitEveryDeclarative,
+    },
+    {
+      name: 'imperative (native)',
+      splitEvery: splitEveryImperative,
     },
     {
       name: 'ramda',
@@ -16,7 +23,7 @@ describe('splitEvery(...)', (): void => {
   ])(
     'invariant: $name',
     // @ts-expect-error -- valid type
-    ({ splitEvery }: { splitEvery: typeof nativeSplitEvery }): void => {
+    ({ splitEvery }: { splitEvery: typeof splitEveryDeclarative }): void => {
       describe.each([
         {
           actual: {
