@@ -1,10 +1,11 @@
 import { describe, expect, it } from '@jest/globals'
-import { type Sliceable } from './slice.js'
+import { type Sliceable } from '../slice.js'
+import { splitEvery as ramdaSplitEvery } from '../ramda/split-every.js'
 import {
   splitEvery as splitEveryDeclarative,
   splitEveryImperative,
-} from './split-every.js'
-import { splitEvery as ramdaSplitEvery } from './ramda/split-every.js'
+  type Sliced,
+} from './index.js'
 
 describe('splitEvery(...)', (): void => {
   describe.each([
@@ -84,7 +85,7 @@ describe('splitEvery(...)', (): void => {
           expected,
         }: {
           actual: { collection: Sliceable<unknown>; width: number }
-          expected: Sliceable<unknown>[]
+          expected: Sliced<unknown>
         }): void => {
           it('should return slices of a given width', (): void => {
             expect(splitEvery(width, collection)).toStrictEqual(expected)

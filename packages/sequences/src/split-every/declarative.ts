@@ -1,28 +1,13 @@
 import { variadicPipe as pipe } from 'conduit'
 import { createState, type State } from 'state'
-import { length } from './length.js'
-import { slice, type Sliceable, type SliceableCallback } from './slice.js'
+import { length } from '../length.js'
+import { type Sliceable, type SliceableCallback, slice } from '../slice.js'
 
-type Callback<T, U> = (x: T) => U
+export type Callback<T, U> = (x: T) => U
 
-type Sliced<T> = Sliceable<T>[]
+export type Sliced<T> = Sliceable<T>[]
 
-export function splitEveryImperative<T>(
-  width: number,
-  collection: Sliceable<T>,
-): Sliced<T> {
-  let i = 0
-  const result: Sliced<T> = []
-
-  while (i < collection.length) {
-    result.push(collection.slice(i, i + width))
-    i += width
-  }
-
-  return result
-}
-
-function splitEveryDeclarative<T>(
+export function splitEveryDeclarative<T>(
   width: number,
   collection: Sliceable<T>,
 ): Sliced<T> {
@@ -43,8 +28,3 @@ function splitEveryDeclarative<T>(
 
   return generated()
 }
-
-export const splitEvery: <T>(
-  width: number,
-  collection: Sliceable<T>,
-) => Sliced<T> = splitEveryDeclarative
