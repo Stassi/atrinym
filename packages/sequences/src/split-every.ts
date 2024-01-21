@@ -23,7 +23,7 @@ export function splitEveryImperative<T>(
   return result
 }
 
-export function splitEvery<T>(
+function splitEveryDeclarative<T>(
   width: number,
   collection: Sliceable<T>,
 ): Sliced<T> {
@@ -44,3 +44,8 @@ export function splitEvery<T>(
 
   return generated()
 }
+
+export const splitEvery: <T>(
+  width: number,
+  collection: Sliceable<T>,
+) => Sliced<T> = splitEveryDeclarative
