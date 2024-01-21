@@ -1,5 +1,4 @@
-// TODO: Replace `R.pipe` with native `conduit:pipe`
-import { pipe } from 'ramda-typed'
+import { variadicPipe as pipe } from 'conduit'
 import { createState, type State } from 'state'
 import { length } from './length.js'
 import { slice, type Sliceable, type SliceableCallback } from './slice.js'
