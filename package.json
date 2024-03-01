@@ -35,5 +35,11 @@
       }
     }
   },
+  "pnpm": {
+    "overrides": {
+      "@typescript-eslint/eslint-plugin": "7.1.0",
+      "@typescript-eslint/parser": "7.1.0"
+    }
+  },
   "prettier": "@vercel/style-guide/prettier"
 }
