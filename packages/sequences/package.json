@@ -33,7 +33,7 @@
     "ramda-typed": "workspace:*",
     "rollup": "^4.9.4",
     "state": "workspace:*",
-    "ts-jest": "29.1.1",
+    "ts-jest": "29.1.2",
     "tsconfig": "workspace:*",
     "typescript": "^5.3.3"
   },

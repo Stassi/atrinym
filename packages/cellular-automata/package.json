@@ -26,7 +26,7 @@
     "ramda-typed": "workspace:*",
     "rollup": "^4.9.4",
     "sequences": "workspace:*",
-    "ts-jest": "29.1.1",
+    "ts-jest": "29.1.2",
     "transcoder": "workspace:*",
     "tsconfig": "workspace:*",
     "typescript": "^5.3.3"
