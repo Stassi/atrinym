@@ -17,6 +17,7 @@ const typescript =
         file: 'dist/index.mjs',
       },
       plugins: [
+        nodeResolve(),
         typescript({
           exclude: [ramdaDirectory, testFiles, 'rollup.config.ts'],
         }),
